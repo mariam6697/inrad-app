@@ -1,7 +1,10 @@
-import React from "react";
-import { Nav, Icon, Navbar } from "rsuite";
+import React, {useContext} from "react";
+import {Nav, Icon, Navbar, Dropdown} from "rsuite";
+import {UserContext} from "../../UserContext";
 
-const NavbarInstance = () => {
+const NavbarInstance = ({logout}) => {
+    const username = useContext(UserContext);
+
     return (
         <Navbar appearance="inverse">
             <Navbar.Header>
@@ -11,7 +14,11 @@ const NavbarInstance = () => {
             </Navbar.Header>
             <Navbar.Body>
                 <Nav pullRight>
-                    <Nav.Item icon={<Icon icon="cog" />}>Configuración</Nav.Item>
+                    <Dropdown title={username.user}>
+                        <Dropdown.Item eventKey="1" onClick={logout}>
+                            Salir
+                        </Dropdown.Item>
+                    </Dropdown>
                 </Nav>
             </Navbar.Body>
         </Navbar>
