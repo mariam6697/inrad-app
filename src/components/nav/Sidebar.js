@@ -71,10 +71,10 @@ const SidenavInstance = ({...props}) => {
                             icon={<Icon icon="group"/>}
                         >
                                 <Dropdown.Item eventKey="4-1" icon={<Icon icon="group"/>}>
-                                    <Link to="/disease_types">Usuarios</Link>
+                                    <Link to="/users">Usuarios</Link>
                                 </Dropdown.Item>
                                 <Dropdown.Item eventKey="4-2" icon={<Icon icon="group"/>}>
-                                    <Link to="/disease_stages">Roles</Link>
+                                    <Link to="/roles">Roles</Link>
                                 </Dropdown.Item>
                         </Dropdown>
                     </Nav>

@@ -11,6 +11,8 @@ import NavbarInstance from "./components/nav/Header";
 import SidenavInstance from "./components/nav/Sidebar";
 import {UserContext} from "./UserContext";
 import LoginContainer from "./Login/LoginContainer";
+import Role from "./Role/RoleContainer";
+import User from "./User/UserContainer";
 
 const header = {
     maxHeight: 1
@@ -44,6 +46,8 @@ function App() {
                                 <Route exact path={["/diseases"]} component={Disease}/>
                                 <Route exact path={["/disease_stages"]} component={DiseaseStage}/>
                                 <Route exact path={["/disease_types"]} component={DiseaseType}/>
+                                <Route exact path={["/roles"]} component={Role}/>
+                                <Route exact path={["/users"]} component={User}/>
                             </Switch>
                         </Content>
                     </Container>
