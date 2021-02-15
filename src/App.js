@@ -13,6 +13,7 @@ import {UserContext} from "./UserContext";
 import LoginContainer from "./Login/LoginContainer";
 import Role from "./Role/RoleContainer";
 import User from "./User/UserContainer";
+import TreatmentCategory from "./TreatmentCategory/TreatmentCategoryContainer";
 
 const header = {
     maxHeight: 1
@@ -48,6 +49,7 @@ function App() {
                                 <Route exact path={["/disease_types"]} component={DiseaseType}/>
                                 <Route exact path={["/roles"]} component={Role}/>
                                 <Route exact path={["/users"]} component={User}/>
+                                <Route exact path={["/treatment_categories"]} component={TreatmentCategory}/>
                             </Switch>
                         </Content>
                     </Container>

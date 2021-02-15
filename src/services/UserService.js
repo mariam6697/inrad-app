@@ -17,7 +17,7 @@ const update = (id, data) => {
 };
 
 const remove = (id) => {
-    return http.delete(`/users/${id}`);
+    return http.delete(`/users/${id}/`);
 };
 
 const findByName = (name) => {

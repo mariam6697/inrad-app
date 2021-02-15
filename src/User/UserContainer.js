@@ -4,6 +4,7 @@ import UserForm from "./UserForm";
 import UserList from "./UserList";
 import UserDetail from "./UserDetail";
 import RoleDataService from "../services/RoleService";
+import {Alert} from "rsuite";
 
 
 const User = () => {
@@ -115,9 +116,12 @@ const User = () => {
         UserDataService.remove(id)
             .then(response => {
                 console.log(response.data);
+                Alert.success('Usuario eliminado exitosamente');
+                retrieveUsers();
             })
             .catch(e => {
                 console.log(e);
+                Alert.error('No se ha podido eliminar usuario');
             });
     };
 

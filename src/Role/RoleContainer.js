@@ -3,6 +3,7 @@ import RoleDataService from "../services/RoleService";
 import RoleForm from "./RoleForm";
 import RoleList from "./RoleList";
 import RoleDetail from "./RoleDetail";
+import {Alert} from "rsuite";
 
 
 const Role = () => {
@@ -99,9 +100,12 @@ const Role = () => {
     const deleteRole = (id) => {
         RoleDataService.remove(id)
             .then(response => {
+                Alert.success('Rol eliminado exitosamente');
+                retrieveRoles();
                 console.log(response.data);
             })
             .catch(e => {
+                Alert.error('No se ha podido eliminar rol');
                 console.log(e);
             });
     };

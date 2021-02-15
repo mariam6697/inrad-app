@@ -8,8 +8,8 @@ const UserForm = ({user, hideModal, visibility, setUser, saveUser, updateUserBut
             <Modal show={visibility} onHide={hideModal}>
                 <Modal.Header>
                     {user.id ?
-                        (<Modal.Title>Editar Rol</Modal.Title>) : (
-                            <Modal.Title>Nuevo Rol</Modal.Title>
+                        (<Modal.Title>Editar Usuario</Modal.Title>) : (
+                            <Modal.Title>Nuevo Usuario</Modal.Title>
                         )}
                 </Modal.Header>
                 <Modal.Body>
@@ -38,6 +38,10 @@ const UserForm = ({user, hideModal, visibility, setUser, saveUser, updateUserBut
                             <FormControl name="role" accepter={SelectPicker}
                                          style={{display: 'inline-block', width: 200}}
                                          data={roles}/>
+                        </FormGroup>
+                        <FormGroup>
+                            <ControlLabel>Contraseña</ControlLabel>
+                            <FormControl name="password" type="password"/>
                         </FormGroup>
                     </Form>
                 </Modal.Body>

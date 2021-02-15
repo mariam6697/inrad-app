@@ -6,7 +6,7 @@ const UserDetail = ({ user, hideModal, visibility }) => {
         <div className="modal-container">
             <Modal show={visibility} onHide={hideModal}>
                 <Modal.Header>
-                    <Modal.Title>Paciente</Modal.Title>
+                    <Modal.Title>Usuario</Modal.Title>
                 </Modal.Header>
                 {user ? (
                     <Modal.Body>
