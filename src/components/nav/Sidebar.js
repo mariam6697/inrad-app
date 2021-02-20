@@ -33,9 +33,6 @@ const SidenavInstance = ({...props}) => {
                                 <Dropdown.Item eventKey="3-1-1">
                                     <Link to="/disease_types">Tipos</Link>
                                 </Dropdown.Item>
-                                <Dropdown.Item eventKey="3-1-2">
-                                    <Link to="/disease_stages">Etapas</Link>
-                                </Dropdown.Item>
                                 <Dropdown.Item eventKey="3-1-3">
                                     <Link to="/diseases">Enfermedades</Link>
                                 </Dropdown.Item>
@@ -49,7 +46,7 @@ const SidenavInstance = ({...props}) => {
                                     <Link to="/treatment_categories">Categoría</Link>
                                 </Dropdown.Item>
                                 <Dropdown.Item eventKey="3-2-2">
-                                    <Link to="/diseases">Tratamientos</Link>
+                                    <Link to="/treatments">Tratamientos</Link>
                                 </Dropdown.Item>
                             </Dropdown.Menu>
                             <Dropdown.Menu
@@ -58,10 +55,10 @@ const SidenavInstance = ({...props}) => {
                                 icon={<Icon icon="gear-circle"/>}
                             >
                                 <Dropdown.Item eventKey="3-3-1">
-                                    <Link to="/disease_types">Grupo</Link>
+                                    <Link to="/symptom_groups">Grupo</Link>
                                 </Dropdown.Item>
                                 <Dropdown.Item eventKey="3-3-2">
-                                    <Link to="/disease_stages">Síntomas</Link>
+                                    <Link to="/symptoms">Síntomas</Link>
                                 </Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>

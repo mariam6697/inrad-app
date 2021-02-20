@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
 import PatientDataService from "../services/PatientService";
-import PatientList from "../components/patients/PatientList";
-import PatientDetail from "../components/patients/PatientDetail";
-import PatientForm from "../components/patients/PatientForm";
+import PatientList from "./PatientList";
+import PatientForm from "./PatientForm";
+import {Alert} from "rsuite";
 
 
 const Patient = () => {
@@ -70,6 +70,8 @@ const Patient = () => {
                     blood_type: response.data.blood_type,
                     attachments: response.data.attachments
                 });
+                setFormVisibility(false);
+                retrievePatients();
                 console.log(response.data);
             })
             .catch(e => {
@@ -115,6 +117,8 @@ const Patient = () => {
         }
         PatientDataService.update(data.id, data)
             .then(response => {
+                setFormVisibility(false);
+                retrievePatients();
                 console.log(response.data);
             })
             .catch(e => {
@@ -126,21 +130,17 @@ const Patient = () => {
         PatientDataService.remove(id)
             .then(response => {
                 console.log(response.data);
+                Alert.success('Paciente eliminado exitosamente');
+                retrievePatients();
             })
             .catch(e => {
                 console.log(e);
+                Alert.error('No se ha podido eliminar el paciente');
             });
     };
 
     return (
         <>
-            <div className="modal-container">
-                <PatientDetail
-                    patient={currentPatient}
-                    hideModal={() => setVisibility(false)}
-                    visibility={visibility}
-                />
-            </div>
             <PatientList
                 patients={patients}
                 searchName={searchName}

@@ -4,9 +4,9 @@ const getAll = () => {
     return http.get("/patients/");
 };
 
-const get = (id) => {
-    return http.get(`/patients/${id}/`);
-};
+async function get(id) {
+    return await http.get(`/patients/${id}/`);
+}
 
 const create = (data) => {
     return http.post("/patients/", data);

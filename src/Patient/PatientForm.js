@@ -1,8 +1,15 @@
 import React from "react";
-import {Modal, Button, FormGroup, ControlLabel, FormControl, HelpBlock, Form} from "rsuite";
+import {Modal, Button, FormGroup, ControlLabel, FormControl, HelpBlock, Form, SelectPicker} from "rsuite";
 
 const PatientForm = ({patient, hideModal, visibility, setPatient, savePatient, updatePatientButton}) => {
-
+    const blood_types = [{"label": "O+", "value": "O+"}, {
+        "label": "O-", "value": "O-"},
+        {"label": "A+", "value": "A+"},
+        {"label": "A-", "value": "A-"},
+        {"label": "B+", "value": "B+"},
+        {"label": "B-", "value": "B-"},
+        {"label": "AB+", "value": "AB+"},
+        {"label": "AB-", "value": "AB-"}]
     return (
         <>
             <Modal show={visibility} onHide={hideModal}>
@@ -20,37 +27,37 @@ const PatientForm = ({patient, hideModal, visibility, setPatient, savePatient, u
                         <FormGroup>
                             <ControlLabel>Nombre</ControlLabel>
                             <FormControl name="name"/>
-                            <HelpBlock>Requerido</HelpBlock>
                         </FormGroup>
                         <FormGroup>
                             <ControlLabel>Apellido</ControlLabel>
                             <FormControl name="last_name"/>
-                            <HelpBlock>Required</HelpBlock>
                         </FormGroup>
                         <FormGroup>
                             <ControlLabel>RUT</ControlLabel>
                             <FormControl name="identifier"/>
-                            <HelpBlock>Requerido</HelpBlock>
                         </FormGroup>
                         <FormGroup>
                             <ControlLabel>Número de teléfono</ControlLabel>
                             <FormControl name="phone_number"/>
-                            <HelpBlock>Requerido</HelpBlock>
                         </FormGroup>
                         <FormGroup>
                             <ControlLabel>Sexo</ControlLabel>
-                            <FormControl name="gender"/>
-                            <HelpBlock>Required</HelpBlock>
+                            <FormControl name="gender" accepter={SelectPicker}
+                                         style={{display: 'inline-block', width: 200}}
+                                         data={[{"label": "Masculino", "value": "Masculino"}, {
+                                             "label": "Femenino",
+                                             "value": "Femenino"
+                                         }]}/>
                         </FormGroup>
                         <FormGroup>
                             <ControlLabel>Edad</ControlLabel>
                             <FormControl name="age"/>
-                            <HelpBlock>Required</HelpBlock>
                         </FormGroup>
                         <FormGroup>
                             <ControlLabel>Tipo de sangre</ControlLabel>
-                            <FormControl name="blood_type"/>
-                            <HelpBlock>Requerido</HelpBlock>
+                            <FormControl name="blood_type" accepter={SelectPicker}
+                                         style={{display: 'inline-block', width: 200}}
+                                         data={blood_types}/>
                         </FormGroup>
                     </Form>
                 </Modal.Body>

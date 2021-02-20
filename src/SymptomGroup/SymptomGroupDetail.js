@@ -1,38 +1,20 @@
 import React from "react";
 import { Modal, Button } from "rsuite";
 
-const PatientModal = ({ patient, hideModal, visibility }) => {
+const SymptomGroupDetail = ({ symptomGroup, hideModal, visibility }) => {
     return (
         <div className="modal-container">
             <Modal show={visibility} onHide={hideModal}>
                 <Modal.Header>
-                    <Modal.Title>Paciente</Modal.Title>
+                    <Modal.Title>Categoría de tratamiento</Modal.Title>
                 </Modal.Header>
-                {patient ? (
+                {symptomGroup ? (
                     <Modal.Body>
                         <div>
                             <label>
                                 <strong>Nombre:</strong>
                             </label>{" "}
-                            {patient.name}
-                        </div>
-                        <div>
-                            <label>
-                                <strong>Apellido:</strong>
-                            </label>{" "}
-                            {patient.last_name}
-                        </div>
-                        <div>
-                            <label>
-                                <strong>RUT:</strong>
-                            </label>{" "}
-                            {patient.identifier}
-                        </div>
-                        <div>
-                            <label>
-                                <strong>Teléfono:</strong>
-                            </label>{" "}
-                            {patient.phone_number}
+                            {symptomGroup.name}
                         </div>
                     </Modal.Body>
                 ) : (
@@ -53,4 +35,4 @@ const PatientModal = ({ patient, hideModal, visibility }) => {
     );
 };
 
-export default PatientModal;
+export default SymptomGroupDetail;

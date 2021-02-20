@@ -12,23 +12,23 @@ const title = {
     marginBottom: 10
 };
 
-const PatientList = ({
-                         patients,
-                         searchName,
-                         onChangeSearchName,
-                         findByName,
-                         showModal,
-                         patientFormButton,
-                         setCurrentPatient,
-                         setFormPatient,
-                         showFormModal,
-                         deletePatient
-                     }) => {
+const TreatmentList = ({
+                      treatments,
+                      searchName,
+                      onChangeSearchName,
+                      findByName,
+                      showModal,
+                      treatmentFormButton,
+                      setCurrentTreatment,
+                      setFormTreatment,
+                      showFormModal,
+                      deleteTreatment
+                  }) => {
     return (
         <div style={marginTop}>
             <Grid fluid>
                 <Row className="show-grid" style={marginTop}>
-                    <h4 style={title}>Pacientes</h4>
+                    <h4 style={title}>Tratamientos</h4>
                     <Col xs={12}>
                         <Input
                             placeholder="Buscar por nombre"
@@ -40,35 +40,31 @@ const PatientList = ({
                         <Button onClick={findByName}>Buscar</Button>
                     </Col>
                     <Col xs={24}>
-                        <Table height={400} data={patients}>
+                        <Table height={400} data={treatments}>
                             <Column width={200} fixed>
                                 <HeaderCell>Nombre</HeaderCell>
                                 <Cell dataKey="name"/>
                             </Column>
                             <Column width={200} fixed>
-                                <HeaderCell>Apellido</HeaderCell>
-                                <Cell dataKey="last_name"/>
-                            </Column>
-                            <Column width={200} fixed>
-                                <HeaderCell>RUT</HeaderCell>
-                                <Cell dataKey="identifier"/>
+                                <HeaderCell>Categoría</HeaderCell>
+                                <Cell dataKey="category"/>
                             </Column>
                             <Column width={220} fixed="right">
                                 <HeaderCell>Acción</HeaderCell>
                                 <Cell>
                                     {(rowData) => {
                                         function detailAction() {
-                                            setCurrentPatient(rowData);
+                                            setCurrentTreatment(rowData);
                                             showModal();
                                         }
 
                                         function editAction() {
-                                            setFormPatient(rowData);
+                                            setFormTreatment(rowData);
                                             showFormModal();
                                         }
 
                                         function deleteAction() {
-                                            deletePatient(rowData.id)
+                                            deleteTreatment(rowData.id)
                                         }
 
                                         return (
@@ -79,15 +75,15 @@ const PatientList = ({
                                             </>
                                         );
                                     }}
-                                        </Cell>
-                                        </Column>
-                                        </Table>
-                                        </Col>
-                                        </Row>
-                                        </Grid>
-                                        <Button onClick={patientFormButton}>Nuevo Paciente</Button>
-                                        </div>
-                                        );
-                                    };
+                                </Cell>
+                            </Column>
+                        </Table>
+                    </Col>
+                </Row>
+            </Grid>
+            <Button onClick={treatmentFormButton}>Nuevo Tratamiento</Button>
+        </div>
+    );
+};
 
-export default PatientList;
+export default TreatmentList;
