@@ -30,6 +30,7 @@ services:
     container_name: inrad-app-prod
     build:
       context: .
-      dockerfile: Dockerfile.prod
     ports:
-      - '1337:80'
+      - '80:80'
+    environment:
+      - REACT_APP_API_HOST=http://localhost:8000/api/
