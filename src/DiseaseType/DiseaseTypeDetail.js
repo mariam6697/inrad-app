@@ -1,20 +1,32 @@
 import React from "react";
 import { Modal, Button } from "rsuite";
 
-const RoleDetail = ({ role, hideModal, visibility }) => {
+const DiseaseTypeDetail = ({ diseaseType, hideModal, visibility }) => {
     return (
         <div className="modal-container">
             <Modal show={visibility} onHide={hideModal}>
                 <Modal.Header>
-                    <Modal.Title>Paciente</Modal.Title>
+                    <Modal.Title>Tipo de Cáncer</Modal.Title>
                 </Modal.Header>
-                {role ? (
+                {diseaseType ? (
                     <Modal.Body>
                         <div>
                             <label>
                                 <strong>Nombre:</strong>
                             </label>{" "}
-                            {role.name}
+                            {diseaseType.name}
+                        </div>
+                        <div>
+                            <label>
+                                <strong>Código:</strong>
+                            </label>{" "}
+                            {diseaseType.code}
+                        </div>
+                        <div>
+                            <label>
+                                <strong>Descripción:</strong>
+                            </label>{" "}
+                            {diseaseType.description}
                         </div>
                     </Modal.Body>
                 ) : (
@@ -35,4 +47,4 @@ const RoleDetail = ({ role, hideModal, visibility }) => {
     );
 };
 
-export default RoleDetail;
+export default DiseaseTypeDetail;

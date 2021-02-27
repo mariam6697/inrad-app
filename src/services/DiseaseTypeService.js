@@ -13,15 +13,15 @@ const create = (data) => {
 };
 
 const update = (id, data) => {
-    return http.put(`/disease_types/${id}`, data);
+    return http.put(`/disease_types/${id}/`, data);
 };
 
 const remove = (id) => {
-    return http.delete(`/disease_types/${id}`);
+    return http.delete(`/disease_types/${id}/`);
 };
 
 const findByName = (name) => {
-    return http.get(`/disease_types?name=${name}`);
+    return http.get(`/disease_types/?name=${name}`);
 };
 
 export default {

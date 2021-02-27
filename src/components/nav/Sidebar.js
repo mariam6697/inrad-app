@@ -11,11 +11,11 @@ const styles = {
 const SidenavInstance = ({...props}) => {
     return (
         <div style={styles}>
-            <Sidenav {...props} defaultOpenKeys={["3", "4"]}>
+            <Sidenav {...props} defaultOpenKeys={["3", "4"]} >
                 <Sidenav.Body>
                     <Nav>
                         <Nav.Item eventKey="1" active icon={<Icon icon="dashboard"/>}>
-                            Visitas
+                            <Link to="/appointments">Visitas</Link>
                         </Nav.Item>
                         <Nav.Item eventKey="2" icon={<Icon icon="group"/>}>
                             <Link to="/patients">Pacientes</Link>
@@ -32,9 +32,6 @@ const SidenavInstance = ({...props}) => {
                             >
                                 <Dropdown.Item eventKey="3-1-1">
                                     <Link to="/disease_types">Tipos</Link>
-                                </Dropdown.Item>
-                                <Dropdown.Item eventKey="3-1-3">
-                                    <Link to="/diseases">Enfermedades</Link>
                                 </Dropdown.Item>
                             </Dropdown.Menu>
                             <Dropdown.Menu

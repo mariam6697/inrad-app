@@ -1,10 +1,7 @@
 import React, {useState} from "react";
 import {Route, Switch} from "react-router-dom";
 import {Container, Content, Footer, Header, Sidebar} from "rsuite";
-import Disease from "./containers/Disease"
 import Patient from "./Patient/PatientContainer"
-import DiseaseStage from "./containers/DiseaseStage"
-import DiseaseType from "./containers/DiseaseType"
 import "rsuite/dist/styles/rsuite-default.css";
 import "./App.css";
 import NavbarInstance from "./components/nav/Header";
@@ -18,6 +15,8 @@ import Treatment from "./Treatment/TreatmentContainer";
 import SymptomGroup from "./SymptomGroup/SymptomGroupContainer";
 import Symptom from "./Symptom/SymptomContainer";
 import PatientDetail from "./Patient/PatientDetailContainer";
+import DiseaseType from "./DiseaseType/DiseaseTypeContainer";
+import AppointmentPatient from "./Appointment/PatientContainer";
 
 const header = {
     maxHeight: 1
@@ -36,21 +35,20 @@ function App() {
 
     return (
         <>
-            <Container>
+            <Container min-height='100vh'>
                 <UserContext.Provider value={{user, setUser}}>
                     <Header styles={header}>
                         <NavbarInstance logout={logout}/>
                     </Header>
                     <Container styles>
-                        <Sidebar>
-                            <SidenavInstance/>
+                        <Sidebar style={{display: 'flex', flexDirection: 'column', backgroundColor: '#f7f7fa'}} >
+                            <SidenavInstance style={{ display: 'flex', flexDirection: 'column' }}/>
                         </Sidebar>
                         <Content>
                             <Switch>
+                                <Route exact path={["/appointments"]} component={AppointmentPatient}/>
                                 <Route exact path={["/patients"]} component={Patient}/>
                                 <Route exact path={["/patients/:id"]} component={PatientDetail}/>
-                                <Route exact path={["/diseases"]} component={Disease}/>
-                                <Route exact path={["/disease_stages"]} component={DiseaseStage}/>
                                 <Route exact path={["/disease_types"]} component={DiseaseType}/>
                                 <Route exact path={["/roles"]} component={Role}/>
                                 <Route exact path={["/users"]} component={User}/>
@@ -61,7 +59,6 @@ function App() {
                             </Switch>
                         </Content>
                     </Container>
-                    <Footer>Footer</Footer>
                 </UserContext.Provider>
             </Container>
         </>

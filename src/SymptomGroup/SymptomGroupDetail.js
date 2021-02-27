@@ -27,7 +27,7 @@ const SymptomGroupDetail = ({ symptomGroup, hideModal, visibility }) => {
                         Ok
                     </Button>
                     <Button onClick={hideModal} appearance="subtle">
-                        Cancel
+                        Cancelar
                     </Button>
                 </Modal.Footer>
             </Modal>
