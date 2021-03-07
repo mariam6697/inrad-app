@@ -4,8 +4,8 @@ import {Container, Content, Footer, Header, Sidebar} from "rsuite";
 import Patient from "./Patient/PatientContainer"
 import "rsuite/dist/styles/rsuite-default.css";
 import "./App.css";
-import NavbarInstance from "./components/nav/Header";
-import SidenavInstance from "./components/nav/Sidebar";
+import NavbarInstance from "./Shared/nav/Header";
+import SidenavInstance from "./Shared/nav/Sidebar";
 import {UserContext} from "./UserContext";
 import LoginContainer from "./Login/LoginContainer";
 import Role from "./Role/RoleContainer";
@@ -17,6 +17,8 @@ import Symptom from "./Symptom/SymptomContainer";
 import PatientDetail from "./Patient/PatientDetailContainer";
 import DiseaseType from "./DiseaseType/DiseaseTypeContainer";
 import AppointmentPatient from "./Appointment/PatientContainer";
+import TreatmentMachine from "./TreatmentMachine/TreatmentMachineContainer";
+import TreatmentMode from "./TreatmentMode/TreatmentModeContainer";
 
 const header = {
     maxHeight: 1
@@ -54,6 +56,8 @@ function App() {
                                 <Route exact path={["/users"]} component={User}/>
                                 <Route exact path={["/treatments"]} component={Treatment}/>
                                 <Route exact path={["/treatment_categories"]} component={TreatmentCategory}/>
+                                <Route exact path={["/treatment_machines"]} component={TreatmentMachine}/>
+                                <Route exact path={["/treatment_modes"]} component={TreatmentMode}/>
                                 <Route exact path={["/symptom_groups"]} component={SymptomGroup}/>
                                 <Route exact path={["/symptoms"]} component={Symptom}/>
                             </Switch>
