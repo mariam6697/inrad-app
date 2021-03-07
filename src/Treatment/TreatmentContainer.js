@@ -3,7 +3,6 @@ import TreatmentDataService from "../services/TreatmentService";
 import TreatmentForm from "./TreatmentForm";
 import TreatmentList from "./TreatmentList";
 import TreatmentDetail from "./TreatmentDetail";
-import RoleDataService from "../services/RoleService";
 import {Alert} from "rsuite";
 import TreatmentCategoryDataService from "../services/TreatmentCategoryService";
 
@@ -14,7 +13,7 @@ const Treatment = () => {
         name: "",
         category: "",
     };
-    const [symptomGroups, setSymptomGroups] = useState([]);
+    const [treatmentCategories, setTreatmentCategories] = useState([]);
     const [treatment, setTreatment] = useState([]);
     const [treatments, setTreatments] = useState([]);
     const [searchName, setSearchName] = useState("");
@@ -24,7 +23,7 @@ const Treatment = () => {
 
     useEffect(() => {
         retrieveTreatments();
-        retrieveSymptomGroups();
+        retrieveTreatmentCategories();
     }, []);
 
     const onChangeSearchName = (value, e) => {
@@ -117,15 +116,15 @@ const Treatment = () => {
             });
     };
 
-    const retrieveSymptomGroups = () => {
+    const retrieveTreatmentCategories = () => {
         TreatmentCategoryDataService.getAll()
             .then(response => {
-                var symptomGroups = response.data;
-                var symptomGroups_for_select = symptomGroups.map(function(x) {
+                var treatmentCategories = response.data;
+                var treatmentCategories_for_select = treatmentCategories.map(function(x) {
                     return {"label": x.name, "value": x.id};
                 });
-                setSymptomGroups(symptomGroups_for_select);
-                console.log(symptomGroups_for_select);
+                setTreatmentCategories(treatmentCategories_for_select);
+                console.log(treatmentCategories_for_select);
             })
             .catch(e => {
                 console.log(e);
@@ -162,7 +161,7 @@ const Treatment = () => {
                     setTreatment={setTreatment}
                     saveTreatment={saveTreatment}
                     updateTreatmentButton={updateTreatmentButton}
-                    symptomGroups={symptomGroups}
+                    treatmentCategories={treatmentCategories}
                 />
             </div>
         </>

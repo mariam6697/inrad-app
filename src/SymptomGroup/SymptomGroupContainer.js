@@ -1,9 +1,10 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import SymptomGroupDataService from "../services/SymptomGroupService";
-import SymptomGroupForm from "./SymptomGroupForm";
-import SymptomGroupList from "./SymptomGroupList";
-import SymptomGroupDetail from "./SymptomGroupDetail";
 import {Alert} from "rsuite";
+import GenericDetail from "../Shared/Components/Detail";
+import GenericList from "../Shared/Components/List";
+import GenericForm from "../Shared/Components/Form";
+import SymptomGroupValues from "./SymptomGroupValues";
 
 
 const SymptomGroup = () => {
@@ -113,33 +114,36 @@ const SymptomGroup = () => {
     return (
         <>
             <div className="modal-container">
-                <SymptomGroupDetail
-                    symptomGroup={currentSymptomGroup}
+                <GenericDetail
+                    detailValues={SymptomGroupValues.detailValues}
+                    instance={currentSymptomGroup}
                     hideModal={() => setVisibility(false)}
                     visibility={visibility}
                 />
             </div>
-            <SymptomGroupList
-                symptomGroups={symptomGroups}
+            <GenericList
+                listValues={SymptomGroupValues.listValues}
+                instances={symptomGroups}
                 searchName={searchName}
                 onChangeSearchName={onChangeSearchName}
                 findByName={findByName}
                 showModal={() => setVisibility(true)}
-                symptomGroupFormButton={symptomGroupFormButton}
-                setCurrentSymptomGroup={setCurrentSymptomGroup}
-                setFormSymptomGroup={setFormSymptomGroup}
+                formButton={symptomGroupFormButton}
+                setCurrentInstance={setCurrentSymptomGroup}
+                setFormInstance={setFormSymptomGroup}
                 showFormModal={() => setFormVisibility(true)}
-                deleteSymptomGroup={deleteSymptomGroup}
+                deleteInstance={deleteSymptomGroup}
             />
             <div className="modal-container">
-                <SymptomGroupForm
-                    symptomGroup={symptomGroup}
+                <GenericForm
+                    formValues={SymptomGroupValues.formValues}
+                    instance={symptomGroup}
                     hideModal={() => setFormVisibility(false)}
                     showModal={() => setFormVisibility(true)}
                     visibility={formVisibility}
-                    setSymptomGroup={setSymptomGroup}
-                    saveSymptomGroup={saveSymptomGroup}
-                    updateSymptomGroupButton={updateSymptomGroupButton}
+                    setInstance={setSymptomGroup}
+                    saveInstance={saveSymptomGroup}
+                    updateInstance={updateSymptomGroupButton}
                 />
             </div>
         </>

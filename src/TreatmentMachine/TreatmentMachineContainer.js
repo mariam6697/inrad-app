@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from "react";
 import TreatmentMachineDataService from "../services/TreatmentMachineService";
-import TreatmentMachineForm from "./TreatmentMachineForm";
-import TreatmentMachineList from "./TreatmentMachineList";
-import TreatmentMachineDetail from "./TreatmentMachineDetail";
 import {Alert} from "rsuite";
+import GenericDetail from "../Shared/Components/Detail";
+import GenericList from "../Shared/Components/List";
+import GenericForm from "../Shared/Components/Form";
+import TreatmentMachineValues from "./TreatmentMachineValues";
 
 
 const TreatmentMachine = () => {
@@ -113,33 +114,36 @@ const TreatmentMachine = () => {
     return (
         <>
             <div className="modal-container">
-                <TreatmentMachineDetail
-                    treatmentMachine={currentTreatmentMachine}
+                <GenericDetail
+                    detailValues={TreatmentMachineValues.detailValues}
+                    instance={currentTreatmentMachine}
                     hideModal={() => setVisibility(false)}
                     visibility={visibility}
                 />
             </div>
-            <TreatmentMachineList
-                treatmentMachines={treatmentMachines}
+            <GenericList
+                listValues={TreatmentMachineValues.listValues}
+                instances={treatmentMachines}
                 searchName={searchName}
                 onChangeSearchName={onChangeSearchName}
                 findByName={findByName}
                 showModal={() => setVisibility(true)}
-                treatmentMachineFormButton={treatmentMachineFormButton}
-                setCurrentTreatmentMachine={setCurrentTreatmentMachine}
-                setFormTreatmentMachine={setFormTreatmentMachine}
+                formButton={treatmentMachineFormButton}
+                setCurrentInstance={setCurrentTreatmentMachine}
+                setFormInstance={setFormTreatmentMachine}
                 showFormModal={() => setFormVisibility(true)}
-                deleteTreatmentMachine={deleteTreatmentMachine}
+                deleteInstance={deleteTreatmentMachine}
             />
             <div className="modal-container">
-                <TreatmentMachineForm
-                    treatmentMachine={treatmentMachine}
+                <GenericForm
+                    formValues={TreatmentMachineValues.formValues}
+                    instance={treatmentMachine}
                     hideModal={() => setFormVisibility(false)}
                     showModal={() => setFormVisibility(true)}
                     visibility={formVisibility}
-                    setTreatmentMachine={setTreatmentMachine}
-                    saveTreatmentMachine={saveTreatmentMachine}
-                    updateTreatmentMachineButton={updateTreatmentMachineButton}
+                    setInstance={setTreatmentMachine}
+                    saveInstance={saveTreatmentMachine}
+                    updateInstance={updateTreatmentMachineButton}
                 />
             </div>
         </>

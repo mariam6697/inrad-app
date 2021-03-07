@@ -12,23 +12,24 @@ const title = {
     marginBottom: 10
 };
 
-const TreatmentModeList = ({
-                      treatmentModes,
-                      searchName,
-                      onChangeSearchName,
-                      findByName,
-                      showModal,
-                      treatmentModeFormButton,
-                      setCurrentTreatmentMode,
-                      setFormTreatmentMode,
-                      showFormModal,
-                      deleteTreatmentMode
-                  }) => {
+const GenericList = ({
+                         listValues,
+                         instances,
+                         searchName,
+                         onChangeSearchName,
+                         findByName,
+                         showModal,
+                         formButton,
+                         setCurrentInstance,
+                         setFormInstance,
+                         showFormModal,
+                         deleteInstance
+                     }) => {
     return (
         <div style={marginTop}>
             <Grid fluid>
                 <Row className="show-grid" style={marginTop}>
-                    <h4 style={title}>Modalidad de tratamiento</h4>
+                    <h4 style={title}>{listValues.title}</h4>
                     <Col xs={12}>
                         <Input
                             placeholder="Buscar por nombre"
@@ -40,27 +41,29 @@ const TreatmentModeList = ({
                         <Button onClick={findByName}>Buscar</Button>
                     </Col>
                     <Col xs={24}>
-                        <Table height={400} data={treatmentModes}>
-                            <Column width={200} fixed>
-                                <HeaderCell>Nombre</HeaderCell>
-                                <Cell dataKey="name"/>
-                            </Column>
+                        <Table height={400} data={instances}>
+                            {listValues.fields.map((field) =>
+                                <Column width={200} fixed>
+                                    <HeaderCell>{field.label}</HeaderCell>
+                                    <Cell dataKey={field.name}/>
+                                </Column>
+                            )}
                             <Column width={220} fixed="right">
                                 <HeaderCell>Acción</HeaderCell>
                                 <Cell>
                                     {(rowData) => {
                                         function detailAction() {
-                                            setCurrentTreatmentMode(rowData);
+                                            setCurrentInstance(rowData);
                                             showModal();
                                         }
 
                                         function editAction() {
-                                            setFormTreatmentMode(rowData);
+                                            setFormInstance(rowData);
                                             showFormModal();
                                         }
 
                                         function deleteAction() {
-                                            deleteTreatmentMode(rowData.id)
+                                            deleteInstance(rowData.id)
                                         }
 
                                         return (
@@ -77,9 +80,9 @@ const TreatmentModeList = ({
                     </Col>
                 </Row>
             </Grid>
-            <Button onClick={treatmentModeFormButton}>Nueva modalidad de tratamiento </Button>
+            <Button onClick={formButton}>{listValues.new_title} </Button>
         </div>
     );
 };
 
-export default TreatmentModeList;
+export default GenericList;

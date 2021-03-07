@@ -1,9 +1,10 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import TreatmentModeDataService from "../services/TreatmentModeService";
-import TreatmentModeForm from "./TreatmentModeForm";
-import TreatmentModeList from "./TreatmentModeList";
-import TreatmentModeDetail from "./TreatmentModeDetail";
 import {Alert} from "rsuite";
+import GenericDetail from "../Shared/Components/Detail";
+import GenericList from "../Shared/Components/List";
+import GenericForm from "../Shared/Components/Form";
+import TreatmentModeValues from "./TreatmentModeValues";
 
 
 const TreatmentMode = () => {
@@ -113,33 +114,36 @@ const TreatmentMode = () => {
     return (
         <>
             <div className="modal-container">
-                <TreatmentModeDetail
-                    treatmentMode={currentTreatmentMode}
+                <GenericDetail
+                    detailValues={TreatmentModeValues.detailValues}
+                    instance={currentTreatmentMode}
                     hideModal={() => setVisibility(false)}
                     visibility={visibility}
                 />
             </div>
-            <TreatmentModeList
-                treatmentModes={treatmentModes}
+            <GenericList
+                listValues={TreatmentModeValues.listValues}
+                instances={treatmentModes}
                 searchName={searchName}
                 onChangeSearchName={onChangeSearchName}
                 findByName={findByName}
                 showModal={() => setVisibility(true)}
-                treatmentModeFormButton={treatmentModeFormButton}
-                setCurrentTreatmentMode={setCurrentTreatmentMode}
-                setFormTreatmentMode={setFormTreatmentMode}
+                formButton={treatmentModeFormButton}
+                setCurrentInstance={setCurrentTreatmentMode}
+                setFormInstance={setFormTreatmentMode}
                 showFormModal={() => setFormVisibility(true)}
-                deleteTreatmentMode={deleteTreatmentMode}
+                deleteInstance={deleteTreatmentMode}
             />
             <div className="modal-container">
-                <TreatmentModeForm
-                    treatmentMode={treatmentMode}
+                <GenericForm
+                    formValues={TreatmentModeValues.formValues}
+                    instance={treatmentMode}
                     hideModal={() => setFormVisibility(false)}
                     showModal={() => setFormVisibility(true)}
                     visibility={formVisibility}
-                    setTreatmentMode={setTreatmentMode}
-                    saveTreatmentMode={saveTreatmentMode}
-                    updateTreatmentModeButton={updateTreatmentModeButton}
+                    setInstance={setTreatmentMode}
+                    saveInstance={saveTreatmentMode}
+                    updateInstance={updateTreatmentModeButton}
                 />
             </div>
         </>

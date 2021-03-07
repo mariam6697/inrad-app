@@ -1,21 +1,23 @@
 import React from "react";
 import { Modal, Button } from "rsuite";
 
-const RoleDetail = ({ role, hideModal, visibility }) => {
+const GenericDetail = ({ detailValues, instance, hideModal, visibility }) => {
     return (
         <div className="modal-container">
             <Modal show={visibility} onHide={hideModal}>
                 <Modal.Header>
-                    <Modal.Title>Paciente</Modal.Title>
+                    <Modal.Title>{detailValues.title}</Modal.Title>
                 </Modal.Header>
-                {role ? (
+                {instance ? (
                     <Modal.Body>
-                        <div>
-                            <label>
-                                <strong>Nombre:</strong>
-                            </label>{" "}
-                            {role.name}
-                        </div>
+                        {detailValues.fields.map((field) =>
+                            <div>
+                                <label>
+                                    <strong>{field.label}:</strong>
+                                </label>{" "}
+                                {instance[field.name]}
+                            </div>
+                        )}
                     </Modal.Body>
                 ) : (
                     <div>
@@ -35,4 +37,4 @@ const RoleDetail = ({ role, hideModal, visibility }) => {
     );
 };
 
-export default RoleDetail;
+export default GenericDetail;

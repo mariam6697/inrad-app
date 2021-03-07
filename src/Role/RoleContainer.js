@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from "react";
 import RoleDataService from "../services/RoleService";
-import RoleForm from "./RoleForm";
-import RoleList from "./RoleList";
-import RoleDetail from "./RoleDetail";
+import RoleValues from "./RoleValues";
 import {Alert} from "rsuite";
+import GenericForm from "../Shared/Components/Form";
+import GenericList from "../Shared/Components/List";
+import GenericDetail from "../Shared/Components/Detail";
 
 
 const Role = () => {
@@ -113,33 +114,36 @@ const Role = () => {
     return (
         <>
             <div className="modal-container">
-                <RoleDetail
-                    role={currentRole}
+                < GenericDetail
+                    detailValues={RoleValues.detailValues}
+                    instance={currentRole}
                     hideModal={() => setVisibility(false)}
                     visibility={visibility}
                 />
             </div>
-            <RoleList
-                roles={roles}
+            <GenericList
+                listValues={RoleValues.listValues}
+                instances={roles}
                 searchName={searchName}
                 onChangeSearchName={onChangeSearchName}
                 findByName={findByName}
                 showModal={() => setVisibility(true)}
-                roleFormButton={roleFormButton}
-                setCurrentRole={setCurrentRole}
-                setFormRole={setFormRole}
+                formButton={roleFormButton}
+                setCurrentInstance={setCurrentRole}
+                setFormInstance={setFormRole}
                 showFormModal={() => setFormVisibility(true)}
-                deleteRole={deleteRole}
+                deleteInstance={deleteRole}
             />
             <div className="modal-container">
-                <RoleForm
-                    role={role}
+                <GenericForm
+                    formValues={RoleValues.formValues}
+                    instance={role}
                     hideModal={() => setFormVisibility(false)}
                     showModal={() => setFormVisibility(true)}
                     visibility={formVisibility}
-                    setRole={setRole}
-                    saveRole={saveRole}
-                    updateRoleButton={updateRoleButton}
+                    setInstance={setRole}
+                    saveInstance={saveRole}
+                    updateInstance={updateRoleButton}
                 />
             </div>
         </>

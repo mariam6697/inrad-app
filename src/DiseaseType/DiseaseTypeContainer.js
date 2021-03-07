@@ -1,16 +1,17 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import DiseaseTypeDataService from "../services/DiseaseTypeService";
-import DiseaseTypeForm from "./DiseaseTypeForm";
-import DiseaseTypeList from "./DiseaseTypeList";
-import DiseaseTypeDetail from "./DiseaseTypeDetail";
 import {Alert} from "rsuite";
+import GenericDetail from "../Shared/Components/Detail";
+import GenericList from "../Shared/Components/List";
+import GenericForm from "../Shared/Components/Form";
+import DiseaseTypeValues from "./DiseaseTypeValues";
 
 
 const DiseaseType = () => {
     const initialDiseaseTypeState = {
         id: null,
         name: "",
-        code: null,
+        code:  "",
         description: "",
     };
     const [diseaseType, setDiseaseType] = useState([]);
@@ -121,33 +122,36 @@ const DiseaseType = () => {
     return (
         <>
             <div className="modal-container">
-                <DiseaseTypeDetail
-                    diseaseType={currentDiseaseType}
+                <GenericDetail
+                    detailValues={DiseaseTypeValues.detailValues}
+                    instance={currentDiseaseType}
                     hideModal={() => setVisibility(false)}
                     visibility={visibility}
                 />
             </div>
-            <DiseaseTypeList
-                diseaseTypes={diseaseTypes}
+            <GenericList
+                listValues={DiseaseTypeValues.listValues}
+                instances={diseaseTypes}
                 searchName={searchName}
                 onChangeSearchName={onChangeSearchName}
                 findByName={findByName}
                 showModal={() => setVisibility(true)}
-                diseaseTypeFormButton={diseaseTypeFormButton}
-                setCurrentDiseaseType={setCurrentDiseaseType}
-                setFormDiseaseType={setFormDiseaseType}
+                formButton={diseaseTypeFormButton}
+                setCurrentInstance={setCurrentDiseaseType}
+                setFormInstance={setFormDiseaseType}
                 showFormModal={() => setFormVisibility(true)}
-                deleteDiseaseType={deleteDiseaseType}
+                deleteInstance={deleteDiseaseType}
             />
             <div className="modal-container">
-                <DiseaseTypeForm
-                    diseaseType={diseaseType}
+                <GenericForm
+                    formValues={DiseaseTypeValues.formValues}
+                    instance={diseaseType}
                     hideModal={() => setFormVisibility(false)}
                     showModal={() => setFormVisibility(true)}
                     visibility={formVisibility}
-                    setDiseaseType={setDiseaseType}
-                    saveDiseaseType={saveDiseaseType}
-                    updateDiseaseTypeButton={updateDiseaseTypeButton}
+                    setInstance={setDiseaseType}
+                    saveInstance={saveDiseaseType}
+                    updateInstance={updateDiseaseTypeButton}
                 />
             </div>
         </>

@@ -1,9 +1,10 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import TreatmentCategoryDataService from "../services/TreatmentCategoryService";
-import TreatmentCategoryForm from "./TreatmentCategoryForm";
-import TreatmentCategoryList from "./TreatmentCategoryList";
-import TreatmentCategoryDetail from "./TreatmentCategoryDetail";
 import {Alert} from "rsuite";
+import GenericForm from "../Shared/Components/Form";
+import GenericList from "../Shared/Components/List";
+import GenericDetail from "../Shared/Components/Detail";
+import TreatmentCategoryValues from "./TreatmentCategoryValues";
 
 
 const TreatmentCategory = () => {
@@ -113,33 +114,36 @@ const TreatmentCategory = () => {
     return (
         <>
             <div className="modal-container">
-                <TreatmentCategoryDetail
-                    treatmentCategory={currentTreatmentCategory}
+                <GenericDetail
+                    detailValues={TreatmentCategoryValues.detailValues}
+                    instance={currentTreatmentCategory}
                     hideModal={() => setVisibility(false)}
                     visibility={visibility}
                 />
             </div>
-            <TreatmentCategoryList
-                treatmentCategories={treatmentCategories}
+            <GenericList
+                listValues={TreatmentCategoryValues.listValues}
+                instances={treatmentCategories}
                 searchName={searchName}
                 onChangeSearchName={onChangeSearchName}
                 findByName={findByName}
                 showModal={() => setVisibility(true)}
-                treatmentCategoryFormButton={treatmentCategoryFormButton}
-                setCurrentTreatmentCategory={setCurrentTreatmentCategory}
-                setFormTreatmentCategory={setFormTreatmentCategory}
+                formButton={treatmentCategoryFormButton}
+                setCurrentInstance={setCurrentTreatmentCategory}
+                setFormInstance={setFormTreatmentCategory}
                 showFormModal={() => setFormVisibility(true)}
-                deleteTreatmentCategory={deleteTreatmentCategory}
+                deleteInstance={deleteTreatmentCategory}
             />
             <div className="modal-container">
-                <TreatmentCategoryForm
-                    treatmentCategory={treatmentCategory}
+                <GenericForm
+                    formValues={TreatmentCategoryValues.formValues}
+                    instance={treatmentCategory}
                     hideModal={() => setFormVisibility(false)}
                     showModal={() => setFormVisibility(true)}
                     visibility={formVisibility}
-                    setTreatmentCategory={setTreatmentCategory}
-                    saveTreatmentCategory={saveTreatmentCategory}
-                    updateTreatmentCategoryButton={updateTreatmentCategoryButton}
+                    setInstance={setTreatmentCategory}
+                    saveInstance={saveTreatmentCategory}
+                    updateInstance={updateTreatmentCategoryButton}
                 />
             </div>
         </>
