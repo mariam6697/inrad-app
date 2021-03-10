@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: inrad-app
+  labels:
+    app: inrad-app
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30000
+  selector:
+    app: inrad-app
+    tier: frontend
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inrad-app
+  labels:
+    app: inrad-app
+spec:
+  selector:
+    matchLabels:
+      app: inrad-app
+      tier: frontend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: inrad-app
+        tier: frontend
+    spec:
+      containers:
+        - image: <IMAGE>
+          name: inrad-app
+          ports:
+            - containerPort: 80
+              name: inrad-app
+          imagePullPolicy: Always
