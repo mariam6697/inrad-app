@@ -3,7 +3,6 @@ import {Button, Form, Modal} from "rsuite";
 import GenericFormGroup from "./FormGroup";
 
 const GenericForm = ({formValues, instance, hideModal, visibility, setInstance, saveInstance, updateInstance}) => {
-
     return (
         <>
             <Modal show={visibility} onHide={hideModal}>
@@ -19,8 +18,11 @@ const GenericForm = ({formValues, instance, hideModal, visibility, setInstance, 
                         formValue={instance} onChange={instance => setInstance(instance)}
                     >
                         {formValues.fields.map((field) =>
-                            <GenericFormGroup label={field.label} name={field.name} required={field.required}/>
+                            <GenericFormGroup label={field.label} name={field.name} required={field.required}
+                                              type={field.type} instance={instance}/>
                         )}
+                        {formValues.customFields ? (formValues.customFields.map((Component) => (<Component />))) : null}
+
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>

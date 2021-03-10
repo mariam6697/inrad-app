@@ -15,7 +15,9 @@ const Patient = () => {
         gender: "",
         age: null,
         blood_type: "",
-        attachments: []
+        attachments: [],
+        treatments: [],
+        diagnostics: [],
 
     };
     const [patient, setPatient] = useState([]);
@@ -68,7 +70,9 @@ const Patient = () => {
                     gender: response.data.gender,
                     age: response.data.age,
                     blood_type: response.data.blood_type,
-                    attachments: response.data.attachments
+                    attachments: response.data.attachments,
+                    treatments: response.data.treatments,
+                    diagnostics: response.data.diagnostics
                 });
                 setFormVisibility(false);
                 retrievePatients();
@@ -99,7 +103,9 @@ const Patient = () => {
             gender: data.gender,
             age: data.age,
             blood_type: data.blood_type,
-            attachments: data.attachments
+            attachments: data.attachments,
+            treatments: data.treatments,
+            diagnostics: data.diagnostics
         });
     }
 

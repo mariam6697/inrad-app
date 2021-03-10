@@ -1,4 +1,7 @@
 import React from "react";
+import PatientAttachmentContainer from "../PatientAttachment/PatientAttachmentContainer";
+import PatientDiagnosticContainer from "../PatientDiagnostic/PatientDiagnosticContainer";
+import PatientTreatmentContainer from "../PatientTreatment/PatientTreatmentContainer";
 
 const PatientDetailShow = ({patient}) => {
     return (<>
@@ -45,6 +48,18 @@ const PatientDetailShow = ({patient}) => {
                 </label>{" "}
                 {patient.blood_type}
             </div>
+            <PatientTreatmentContainer
+                patient_id={patient.id}
+                treatments={patient.treatments}
+            />
+            <PatientDiagnosticContainer
+                patient_id={patient.id}
+                diagnostics={patient.diagnostics}
+            />
+            <PatientAttachmentContainer
+                patient_id={patient.id}
+                attachments={patient.attachments}
+            />
         </>
 
     );

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import PatientDataService from "../services/PatientService";
 import {useParams} from "react-router";
 import PatientDetailShow from "./Patient";
@@ -23,7 +23,8 @@ const PatientDetail = () => {
             gender: data.gender,
             age: data.age,
             blood_type: data.blood_type,
-            attachments: data.attachments
+            attachments: data.attachments,
+            treatments: data.treatments,
         });
     }
 
@@ -31,6 +32,7 @@ const PatientDetail = () => {
         PatientDataService.get(id)
             .then(response => {
                 setPatientDetail(response.data);
+                console.log(response.data);
             })
             .catch(e => {
                 console.log(e);
@@ -40,7 +42,7 @@ const PatientDetail = () => {
 
     return (
         <>
-            { patient && (<PatientDetailShow
+            {patient && (<PatientDetailShow
                 patient={patient}
             />)}
         </>
