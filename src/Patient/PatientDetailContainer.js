@@ -25,6 +25,8 @@ const PatientDetail = () => {
             blood_type: data.blood_type,
             attachments: data.attachments,
             treatments: data.treatments,
+            current_treatment: data.current_treatment,
+            current_diagnostic: data.current_diagnostic
         });
     }
 

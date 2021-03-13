@@ -1,13 +1,15 @@
 import React, {useEffect, useState} from "react";
 import PatientTreatmentDataService from "../services/PatientTreatmentService";
-import {Alert} from "rsuite";
-import GenericDetail from "../Shared/Components/Detail";
+import {Alert, Button} from "rsuite";
+import GenericModalDetail from "../Shared/Components/ModalDetail";
 import GenericList from "../Shared/Components/List";
 import GenericForm from "../Shared/Components/Form";
 import PatientTreatmentValues from "./PatientTreatmentValues";
+import GenericDetail from "../Shared/Components/Detail";
+import PatientDataService from "../services/PatientService";
 
 
-const PatientTreatment = ({patient_id, treatments}) => {
+const PatientTreatment = ({patient_id, currentTreatment}) => {
     const initialPatientTreatmentState = {
         id: null,
         start_date: "",
@@ -17,35 +19,18 @@ const PatientTreatment = ({patient_id, treatments}) => {
         success: null,
         treatment: null
     };
-    const [patientTreatment, setPatientTreatment] = useState([]);
-    const [patientTreatments, setPatientTreatments] = useState(treatments);
-    const [searchName, setSearchName] = useState("");
-    const [currentPatientTreatment, setCurrentPatientTreatment] = useState(null);
-    const [visibility, setVisibility] = useState(false);
+    const [patientTreatment, setPatientTreatment] = useState(initialPatientTreatmentState);
+    const [currentPatientTreatment, setCurrentPatientTreatment] = useState(currentTreatment);
     const [formVisibility, setFormVisibility] = useState(false);
 
-    const onChangeSearchName = (value, e) => {
-        const searchName = value;
-        setSearchName(searchName);
-    };
-
-    const retrievePatientTreatments = () => {
-        PatientTreatmentDataService.getAll(patient_id)
+    const retrievePatientTreatment = () => {
+        PatientDataService.get(patient_id)
             .then(response => {
-                setPatientTreatments(response.data);
+                setCurrentPatientTreatment(response.data.current_treatment);
                 console.log(response.data);
             })
             .catch(e => {
                 console.log(e);
-            });
-    };
-
-    const findByName = () => {
-        PatientTreatmentDataService.findByName(patient_id, searchName)
-            .then((response) => {
-                setPatientTreatments(response.data);
-            })
-            .catch((e) => {
             });
     };
 
@@ -62,7 +47,7 @@ const PatientTreatment = ({patient_id, treatments}) => {
                     treatment: response.data.treatment
                 });
                 setFormVisibility(false);
-                retrievePatientTreatments();
+                retrievePatientTreatment();
                 console.log(response.data);
             })
             .catch(e => {
@@ -78,6 +63,11 @@ const PatientTreatment = ({patient_id, treatments}) => {
         newPatientTreatment();
         setFormVisibility(true);
 
+    };
+
+    const patientTreatmentEditFormButton = () => {
+        setPatientTreatment(currentPatientTreatment);
+        setFormVisibility(true);
     };
 
     const setFormPatientTreatment = (data) => {
@@ -106,7 +96,7 @@ const PatientTreatment = ({patient_id, treatments}) => {
         PatientTreatmentDataService.update(patient_id, data.id, data)
             .then(response => {
                 setFormVisibility(false);
-                retrievePatientTreatments();
+                retrievePatientTreatment();
                 console.log(response.data);
             })
             .catch(e => {
@@ -119,7 +109,7 @@ const PatientTreatment = ({patient_id, treatments}) => {
             .then(response => {
                 console.log(response.data);
                 Alert.success('Modalidad de tratamiento eliminada exitosamente');
-                retrievePatientTreatments();
+                retrievePatientTreatment();
             })
             .catch(e => {
                 console.log(e);
@@ -129,27 +119,45 @@ const PatientTreatment = ({patient_id, treatments}) => {
 
     return (
         <>
-            <div className="modal-container">
-                <GenericDetail
-                    detailValues={PatientTreatmentValues.detailValues}
-                    instance={currentPatientTreatment}
-                    hideModal={() => setVisibility(false)}
-                    visibility={visibility}
-                />
-            </div>
-            <GenericList
-                listValues={PatientTreatmentValues.listValues}
-                instances={patientTreatments}
-                searchName={searchName}
-                onChangeSearchName={onChangeSearchName}
-                findByName={findByName}
-                showModal={() => setVisibility(true)}
-                formButton={patientTreatmentFormButton}
-                setCurrentInstance={setCurrentPatientTreatment}
-                setFormInstance={setFormPatientTreatment}
-                showFormModal={() => setFormVisibility(true)}
-                deleteInstance={deletePatientTreatment}
-            />
+            <h3>Tratamiento</h3>
+            {currentPatientTreatment ? (<div>
+                <div>
+                    <label>
+                        <strong>Fecha de comienzo:</strong>
+                    </label>{" "}
+                    {currentPatientTreatment.start_date}
+                </div>
+                <div>
+                    <label>
+                        <strong>Fecha de término:</strong>
+                    </label>{" "}
+                    {currentPatientTreatment.end_date}
+                </div>
+                <div>
+                    <label>
+                        <strong>Tratamiento:</strong>
+                    </label>{" "}
+                    {currentPatientTreatment.treatment}
+                </div>
+                <div>
+                    <label>
+                        <strong>Máquina:</strong>
+                    </label>{" "}
+                    {currentPatientTreatment.machine}
+                </div>
+                <div>
+                    <label>
+                        <strong>Modalidad:</strong>
+                    </label>{" "}
+                    {currentPatientTreatment.mode}
+                </div>
+            </div>) : (<div>
+                <label>
+                    <strong>No posee tratamiento</strong>
+                </label>
+            </div>)}
+            <Button onClick={patientTreatmentFormButton}>{PatientTreatmentValues.listValues.new_title} </Button>
+            <Button onClick={patientTreatmentEditFormButton}> Editar </Button>
             <div className="modal-container">
                 <GenericForm
                     formValues={PatientTreatmentValues.formValues}

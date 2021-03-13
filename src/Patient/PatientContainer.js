@@ -18,6 +18,8 @@ const Patient = () => {
         attachments: [],
         treatments: [],
         diagnostics: [],
+        current_treatment: null,
+        current_diagnostic: null,
 
     };
     const [patient, setPatient] = useState([]);
@@ -72,7 +74,9 @@ const Patient = () => {
                     blood_type: response.data.blood_type,
                     attachments: response.data.attachments,
                     treatments: response.data.treatments,
-                    diagnostics: response.data.diagnostics
+                    diagnostics: response.data.diagnostics,
+                    current_treatment: response.data.current_treatment,
+                    current_diagnostic: response.data.current_diagnostic
                 });
                 setFormVisibility(false);
                 retrievePatients();
@@ -105,7 +109,9 @@ const Patient = () => {
             blood_type: data.blood_type,
             attachments: data.attachments,
             treatments: data.treatments,
-            diagnostics: data.diagnostics
+            diagnostics: data.diagnostics,
+            current_treatment: data.current_treatment,
+            current_diagnostic: data.current_diagnostic
         });
     }
 

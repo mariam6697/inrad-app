@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import PatientAttachmentDataService from "../services/PatientAttachmentService";
 import {Alert} from "rsuite";
-import GenericDetail from "../Shared/Components/Detail";
+import GenericModalDetail from "../Shared/Components/ModalDetail";
 import GenericList from "../Shared/Components/List";
 import GenericForm from "../Shared/Components/Form";
 import PatientAttachmentValues from "./PatientAttachmentValues";
@@ -118,7 +118,7 @@ const PatientAttachment = ({patient_id, attachments}) => {
     return (
         <>
             <div className="modal-container">
-                <GenericDetail
+                <GenericModalDetail
                     detailValues={PatientAttachmentValues.detailValues}
                     instance={currentPatientAttachment}
                     hideModal={() => setVisibility(false)}

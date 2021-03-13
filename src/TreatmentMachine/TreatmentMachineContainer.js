@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import TreatmentMachineDataService from "../services/TreatmentMachineService";
 import {Alert} from "rsuite";
-import GenericDetail from "../Shared/Components/Detail";
+import GenericModalDetail from "../Shared/Components/ModalDetail";
 import GenericList from "../Shared/Components/List";
 import GenericForm from "../Shared/Components/Form";
 import TreatmentMachineValues from "./TreatmentMachineValues";
@@ -114,7 +114,7 @@ const TreatmentMachine = () => {
     return (
         <>
             <div className="modal-container">
-                <GenericDetail
+                <GenericModalDetail
                     detailValues={TreatmentMachineValues.detailValues}
                     instance={currentTreatmentMachine}
                     hideModal={() => setVisibility(false)}

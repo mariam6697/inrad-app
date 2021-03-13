@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import SymptomGroupDataService from "../services/SymptomGroupService";
 import {Alert} from "rsuite";
-import GenericDetail from "../Shared/Components/Detail";
+import GenericModalDetail from "../Shared/Components/ModalDetail";
 import GenericList from "../Shared/Components/List";
 import GenericForm from "../Shared/Components/Form";
 import SymptomGroupValues from "./SymptomGroupValues";
@@ -114,7 +114,7 @@ const SymptomGroup = () => {
     return (
         <>
             <div className="modal-container">
-                <GenericDetail
+                <GenericModalDetail
                     detailValues={SymptomGroupValues.detailValues}
                     instance={currentSymptomGroup}
                     hideModal={() => setVisibility(false)}

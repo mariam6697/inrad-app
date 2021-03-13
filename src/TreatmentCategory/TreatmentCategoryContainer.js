@@ -3,7 +3,7 @@ import TreatmentCategoryDataService from "../services/TreatmentCategoryService";
 import {Alert} from "rsuite";
 import GenericForm from "../Shared/Components/Form";
 import GenericList from "../Shared/Components/List";
-import GenericDetail from "../Shared/Components/Detail";
+import GenericModalDetail from "../Shared/Components/ModalDetail";
 import TreatmentCategoryValues from "./TreatmentCategoryValues";
 
 
@@ -114,7 +114,7 @@ const TreatmentCategory = () => {
     return (
         <>
             <div className="modal-container">
-                <GenericDetail
+                <GenericModalDetail
                     detailValues={TreatmentCategoryValues.detailValues}
                     instance={currentTreatmentCategory}
                     hideModal={() => setVisibility(false)}

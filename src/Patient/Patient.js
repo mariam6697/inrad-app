@@ -3,7 +3,8 @@ import PatientAttachmentContainer from "../PatientAttachment/PatientAttachmentCo
 import PatientDiagnosticContainer from "../PatientDiagnostic/PatientDiagnosticContainer";
 import PatientTreatmentContainer from "../PatientTreatment/PatientTreatmentContainer";
 
-const PatientDetailShow = ({patient}) => {
+const
+    PatientDetailShow = ({patient}) => {
     return (<>
             <h1>Paciente</h1>
             <div>
@@ -51,10 +52,11 @@ const PatientDetailShow = ({patient}) => {
             <PatientTreatmentContainer
                 patient_id={patient.id}
                 treatments={patient.treatments}
+                currentTreatment={patient.current_treatment}
             />
             <PatientDiagnosticContainer
                 patient_id={patient.id}
-                diagnostics={patient.diagnostics}
+                currentDiagnostic={patient.current_diagnostic}
             />
             <PatientAttachmentContainer
                 patient_id={patient.id}

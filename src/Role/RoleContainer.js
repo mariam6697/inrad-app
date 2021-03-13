@@ -4,7 +4,7 @@ import RoleValues from "./RoleValues";
 import {Alert} from "rsuite";
 import GenericForm from "../Shared/Components/Form";
 import GenericList from "../Shared/Components/List";
-import GenericDetail from "../Shared/Components/Detail";
+import GenericModalDetail from "../Shared/Components/ModalDetail";
 
 
 const Role = () => {
@@ -114,7 +114,7 @@ const Role = () => {
     return (
         <>
             <div className="modal-container">
-                < GenericDetail
+                < GenericModalDetail
                     detailValues={RoleValues.detailValues}
                     instance={currentRole}
                     hideModal={() => setVisibility(false)}

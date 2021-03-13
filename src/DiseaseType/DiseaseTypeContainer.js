@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import DiseaseTypeDataService from "../services/DiseaseTypeService";
 import {Alert} from "rsuite";
-import GenericDetail from "../Shared/Components/Detail";
+import GenericModalDetail from "../Shared/Components/ModalDetail";
 import GenericList from "../Shared/Components/List";
 import GenericForm from "../Shared/Components/Form";
 import DiseaseTypeValues from "./DiseaseTypeValues";
@@ -122,7 +122,7 @@ const DiseaseType = () => {
     return (
         <>
             <div className="modal-container">
-                <GenericDetail
+                <GenericModalDetail
                     detailValues={DiseaseTypeValues.detailValues}
                     instance={currentDiseaseType}
                     hideModal={() => setVisibility(false)}

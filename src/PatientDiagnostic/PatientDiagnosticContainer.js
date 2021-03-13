@@ -1,13 +1,12 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import PatientDiagnosticDataService from "../services/PatientDiagnosticService";
-import {Alert} from "rsuite";
-import GenericDetail from "../Shared/Components/Detail";
-import GenericList from "../Shared/Components/List";
+import {Alert, Button} from "rsuite";
 import GenericForm from "../Shared/Components/Form";
 import PatientDiagnosticValues from "./PatientDiagnosticValues";
+import PatientDataService from "../services/PatientService";
 
 
-const PatientDiagnostic = ({patient_id, diagnostics}) => {
+const PatientDiagnostic = ({patient_id, currentDiagnostic}) => {
     const initialPatientDiagnosticState = {
         id: null,
         diagnostic_date: "",
@@ -16,35 +15,18 @@ const PatientDiagnostic = ({patient_id, diagnostics}) => {
         disease_stage: "",
         disease_aggressiveness: "",
     };
-    const [patientDiagnostic, setPatientDiagnostic] = useState([]);
-    const [patientDiagnostics, setPatientDiagnostics] = useState(diagnostics);
-    const [searchName, setSearchName] = useState("");
-    const [currentPatientDiagnostic, setCurrentPatientDiagnostic] = useState(null);
-    const [visibility, setVisibility] = useState(false);
+    const [patientDiagnostic, setPatientDiagnostic] = useState(initialPatientDiagnosticState);
+    const [currentPatientDiagnostic, setCurrentPatientDiagnostic] = useState(currentDiagnostic);
     const [formVisibility, setFormVisibility] = useState(false);
 
-    const onChangeSearchName = (value, e) => {
-        const searchName = value;
-        setSearchName(searchName);
-    };
-
-    const retrievePatientDiagnostics = () => {
-        PatientDiagnosticDataService.getAll(patient_id)
+    const retrievePatientDiagnostic = () => {
+        PatientDataService.get(patient_id)
             .then(response => {
-                setPatientDiagnostics(response.data);
+                setCurrentPatientDiagnostic(response.data.current_diagnostic);
                 console.log(response.data);
             })
             .catch(e => {
                 console.log(e);
-            });
-    };
-
-    const findByName = () => {
-        PatientDiagnosticDataService.findByName(patient_id, searchName)
-            .then((response) => {
-                setPatientDiagnostics(response.data);
-            })
-            .catch((e) => {
             });
     };
 
@@ -60,7 +42,7 @@ const PatientDiagnostic = ({patient_id, diagnostics}) => {
                     disease_aggressiveness: response.data.disease_aggressiveness,
                 });
                 setFormVisibility(false);
-                retrievePatientDiagnostics();
+                retrievePatientDiagnostic();
                 console.log(response.data);
             })
             .catch(e => {
@@ -76,6 +58,11 @@ const PatientDiagnostic = ({patient_id, diagnostics}) => {
         newPatientDiagnostic();
         setFormVisibility(true);
 
+    };
+
+    const patientDiagnosticEditFormButton = () => {
+        setPatientDiagnostic(currentPatientDiagnostic);
+        setFormVisibility(true);
     };
 
     const setFormPatientDiagnostic = (data) => {
@@ -102,7 +89,7 @@ const PatientDiagnostic = ({patient_id, diagnostics}) => {
         PatientDiagnosticDataService.update(patient_id, data.id, data)
             .then(response => {
                 setFormVisibility(false);
-                retrievePatientDiagnostics();
+                retrievePatientDiagnostic();
                 console.log(response.data);
             })
             .catch(e => {
@@ -115,7 +102,7 @@ const PatientDiagnostic = ({patient_id, diagnostics}) => {
             .then(response => {
                 console.log(response.data);
                 Alert.success('Modalidad de tratamiento eliminada exitosamente');
-                retrievePatientDiagnostics();
+                retrievePatientDiagnostic();
             })
             .catch(e => {
                 console.log(e);
@@ -125,27 +112,45 @@ const PatientDiagnostic = ({patient_id, diagnostics}) => {
 
     return (
         <>
-            <div className="modal-container">
-                <GenericDetail
-                    detailValues={PatientDiagnosticValues.detailValues}
-                    instance={currentPatientDiagnostic}
-                    hideModal={() => setVisibility(false)}
-                    visibility={visibility}
-                />
-            </div>
-            <GenericList
-                listValues={PatientDiagnosticValues.listValues}
-                instances={patientDiagnostics}
-                searchName={searchName}
-                onChangeSearchName={onChangeSearchName}
-                findByName={findByName}
-                showModal={() => setVisibility(true)}
-                formButton={patientDiagnosticFormButton}
-                setCurrentInstance={setCurrentPatientDiagnostic}
-                setFormInstance={setFormPatientDiagnostic}
-                showFormModal={() => setFormVisibility(true)}
-                deleteInstance={deletePatientDiagnostic}
-            />
+            <h3>Diagnóstico</h3>
+            {currentPatientDiagnostic ? (<div>
+                <div>
+                    <label>
+                        <strong>Fecha de diagnóstico:</strong>
+                    </label>{" "}
+                    {currentPatientDiagnostic.diagnostic_date}
+                </div>
+                <div>
+                    <label>
+                        <strong>Descripción:</strong>
+                    </label>{" "}
+                    {currentPatientDiagnostic.description}
+                </div>
+                <div>
+                    <label>
+                        <strong>Tipo:</strong>
+                    </label>{" "}
+                    {currentPatientDiagnostic.disease_type.name}
+                </div>
+                <div>
+                    <label>
+                        <strong>Etapa:</strong>
+                    </label>{" "}
+                    {currentPatientDiagnostic.disease_stage}
+                </div>
+                <div>
+                    <label>
+                        <strong>Agresividad:</strong>
+                    </label>{" "}
+                    {currentPatientDiagnostic.disease_aggressiveness}
+                </div>
+            </div>) : (<div>
+                <label>
+                    <strong>No posee diagnóstico</strong>
+                </label>
+            </div>)}
+            <Button onClick={patientDiagnosticFormButton}>{PatientDiagnosticValues.listValues.new_title} </Button>
+            <Button onClick={patientDiagnosticEditFormButton}> Editar </Button>
             <div className="modal-container">
                 <GenericForm
                     formValues={PatientDiagnosticValues.formValues}
