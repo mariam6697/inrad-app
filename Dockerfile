@@ -2,6 +2,7 @@
 FROM node:13.12.0-alpine as build
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
+ENV REACT_APP_API_HOST=https://inrad-api.musicmania.cl/api/
 COPY package.json ./
 COPY package-lock.json ./
 RUN npm ci --silent
