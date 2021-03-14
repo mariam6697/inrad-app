@@ -8,11 +8,10 @@ spec:
   ports:
     - port: 80
       targetPort: 80
-      nodePort: 30000
+      protocol: TCP
   selector:
     app: inrad-app
     tier: frontend
-  type: NodePort
 ---
 apiVersion: apps/v1
 kind: Deployment
