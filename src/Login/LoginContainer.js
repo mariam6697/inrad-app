@@ -1,22 +1,14 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {Alert, Schema} from "rsuite";
 import LoginDataService from "../services/LoginService";
 import {StringType} from "schema-typed";
 import LoginForm from "./LoginForm";
 
-const LoginContainer = ({setUser}) => {
+const LoginContainer = ({setUser, setJwt}) => {
     const [account, setAccount] = useState({
         username: "",
         password: ""
     });
-
-    useEffect(() => {
-        setCSRF();
-    }, []);
-
-    const setCSRF = () => {
-        LoginDataService.getCSRF().then(res => console.log(res))
-    }
 
     const sendAccount = () => {
         if (account.username === "" || account.password === "")
@@ -29,6 +21,9 @@ const LoginContainer = ({setUser}) => {
         ).then(res => {
             console.log(res);
             setUser(account.username);
+            setJwt(res.data);
+            localStorage.setItem("access", res.data.access);
+            localStorage.setItem("refresh", res.data.refresh);
         }).catch(res => {
                 console.log(res);
                 Alert.error('Datos inválidos');

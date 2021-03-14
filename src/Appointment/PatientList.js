@@ -21,7 +21,7 @@ const PatientList = ({
                      }) => {
 
     const history = useHistory();
-    const handleOnClickDetail = useCallback((id) => history.push(`/patients/${id}`), [history]);
+    const handleOnClickDetail = useCallback((id) => history.push(`/patients/${id}/appointments`), [history]);
     return (
         <div style={marginTop}>
             <Grid fluid>

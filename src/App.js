@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Route, Switch} from "react-router-dom";
+import {Route, Switch, useHistory} from "react-router-dom";
 import {Container, Content, Footer, Header, Sidebar} from "rsuite";
 import Patient from "./Patient/PatientContainer"
 import "rsuite/dist/styles/rsuite-default.css";
@@ -25,14 +25,18 @@ const header = {
 }
 
 function App() {
-    const [user, setUser] = useState(null);
+    const storedJwt = localStorage.getItem('access');
+    const [jwt, setJwt] = useState(storedJwt || null);
+    const username = storedJwt ? JSON.parse(atob(localStorage.getItem("access").split('.')[1])).username : null
+    const [user, setUser] = useState(username);
 
     const logout = () => {
-        setUser(null);
+        localStorage.clear();
+        window.location.href = '/login/';
     };
 
-    if (!user) {
-        return (<LoginContainer setUser={setUser}/>);
+    if (!jwt) {
+        return (<LoginContainer setUser={setUser} setJwt={setJwt}/>);
     }
 
     return (
