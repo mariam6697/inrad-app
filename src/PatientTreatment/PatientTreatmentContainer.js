@@ -1,11 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import PatientTreatmentDataService from "../services/PatientTreatmentService";
 import {Alert, Button} from "rsuite";
-import GenericModalDetail from "../Shared/Components/ModalDetail";
-import GenericList from "../Shared/Components/List";
 import GenericForm from "../Shared/Components/Form";
 import PatientTreatmentValues from "./PatientTreatmentValues";
-import GenericDetail from "../Shared/Components/Detail";
 import PatientDataService from "../services/PatientService";
 
 

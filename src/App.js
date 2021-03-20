@@ -19,6 +19,7 @@ import DiseaseType from "./DiseaseType/DiseaseTypeContainer";
 import AppointmentPatient from "./Appointment/PatientContainer";
 import TreatmentMachine from "./TreatmentMachine/TreatmentMachineContainer";
 import TreatmentMode from "./TreatmentMode/TreatmentModeContainer";
+import Appointment from "./Appointment/Appointment";
 
 const header = {
     maxHeight: 1
@@ -53,6 +54,7 @@ function App() {
                         <Content>
                             <Switch>
                                 <Route exact path={["/appointments"]} component={AppointmentPatient}/>
+                                <Route exact path={["/patients/:id/appointments"]} component={Appointment}/>
                                 <Route exact path={["/patients"]} component={Patient}/>
                                 <Route exact path={["/patients/:id"]} component={PatientDetail}/>
                                 <Route exact path={["/disease_types"]} component={DiseaseType}/>
