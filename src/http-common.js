@@ -37,7 +37,7 @@ instance.interceptors.response.use(
             error.response.status === 401 &&
             error.response.statusText === "Unauthorized") {
             const refreshToken = localStorage.getItem('refresh');
-
+            console.log(refreshToken)
             if (refreshToken) {
                 const tokenParts = JSON.parse(atob(refreshToken.split('.')[1]));
 
