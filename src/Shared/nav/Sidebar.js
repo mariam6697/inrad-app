@@ -31,6 +31,9 @@ const SidenavInstance = ({...props}) => {
                                 icon={<Icon icon="gear-circle"/>}
                             >
                                 <Dropdown.Item eventKey="3-1-1">
+                                    <Link to="/disease_categories">Categorías</Link>
+                                </Dropdown.Item>
+                                <Dropdown.Item eventKey="3-1-2">
                                     <Link to="/disease_types">Tipos</Link>
                                 </Dropdown.Item>
                             </Dropdown.Menu>

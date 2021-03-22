@@ -10,8 +10,14 @@ const GenericFormGroup = ({label, name, required, type, instance}) => {
         instance[name] = value;
         console.log(value)
     };
+    const onChangeFile = (value, e) => {
+        instance[name] = value.target.files[0];
+        console.log(value)
+    };
     const getComponent = () => {
         switch (type) {
+            case 'file':
+                return <input type="file" name="attachment" onChange={onChangeFile}/>;
             case 'toggle':
                 return <Toggle onChange={onToggle}/>;
             case 'date':

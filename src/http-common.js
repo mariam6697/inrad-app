@@ -38,7 +38,7 @@ instance.interceptors.response.use(
             error.response.statusText === "Unauthorized") {
             const refreshToken = localStorage.getItem('refresh');
             console.log(refreshToken)
-            if (refreshToken) {
+            if (refreshToken != null) {
                 const tokenParts = JSON.parse(atob(refreshToken.split('.')[1]));
 
                 // exp date in token is expressed in seconds, while now() returns milliseconds:
@@ -51,7 +51,6 @@ instance.interceptors.response.use(
                         .then((response) => {
 
                             localStorage.setItem('access', response.data.access);
-                            localStorage.setItem('refresh', response.data.refresh);
 
                             instance.defaults.headers['Authorization'] = "Bearer " + response.data.access;
                             originalRequest.headers['Authorization'] = "Bearer " + response.data.access;

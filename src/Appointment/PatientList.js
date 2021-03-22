@@ -20,8 +20,9 @@ const PatientList = ({
                          findByName,
                      }) => {
 
-    const history = useHistory();
-    const handleOnClickDetail = useCallback((id) => history.push(`/patients/${id}/appointments`), [history]);
+    const handleOnClickDetail = (id) => {
+        window.location.href = `/patients/${id}/appointments`
+    }
     return (
         <div style={marginTop}>
             <Grid fluid>

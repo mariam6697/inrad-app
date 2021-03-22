@@ -13,11 +13,11 @@ const TreatmentMachineSelectField = () => {
         TreatmentMachineDataService.getAll()
             .then(response => {
                 var treatmentMachines = response.data;
-                var treatmentMachines_for_select = treatmentMachines.map(function (x) {
+                var treatmentMachinesForSelect = treatmentMachines.map(function (x) {
                     return {"label": x.name, "value": x.id};
                 });
-                setTreatmentMachines(treatmentMachines_for_select);
-                console.log(treatmentMachines_for_select);
+                setTreatmentMachines(treatmentMachinesForSelect);
+                console.log(treatmentMachinesForSelect);
             })
             .catch(e => {
                 console.log(e);

@@ -1,5 +1,6 @@
 import React from "react";
 import {Input, Button, Table, Grid, Row, Col} from "rsuite";
+import GenericFormGroup from "./FormGroup";
 
 const {Column, HeaderCell, Cell} = Table;
 
@@ -43,10 +44,18 @@ const GenericList = ({
                     <Col xs={24}>
                         <Table height={400} data={instances}>
                             {listValues.fields.map((field) =>
-                                <Column width={200} fixed>
+                                (field.label === "Link" ? (<Column width={200} fixed>
+                                    <HeaderCell>{field.label}</HeaderCell>
+                                        <Cell>
+                                            {(rowData) => {
+                                                return <a href={rowData.attachment}>{rowData.attachment}</a>;
+                                            }}
+                                        </Cell>
+                                </Column>):
+                                    (<Column width={200} fixed>
                                     <HeaderCell>{field.label}</HeaderCell>
                                     <Cell dataKey={field.name}/>
-                                </Column>
+                                </Column>))
                             )}
                             <Column width={220} fixed="right">
                                 <HeaderCell>Acción</HeaderCell>

@@ -18,9 +18,9 @@ const formValues = {
         },
         {
             component: "text",
-            label: "Link",
-            type: "text",
-            name: "link",
+            label: "Adjunto",
+            type: "file",
+            name: "attachment",
             required: true,
         }
     ],
@@ -42,7 +42,7 @@ const listValues = {
         },
         {
             label: "Link",
-            name: "link",
+            name: "attachment",
         }
     ]
 }
@@ -60,7 +60,7 @@ const detailValues = {
         },
         {
             label: "Link",
-            name: "link",
+            name: "attachment",
         }
     ]
 }

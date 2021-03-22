@@ -23,7 +23,7 @@ const PatientAppointment = ({patient_id}) => {
     const [formVisibility, setFormVisibility] = useState(false);
 
     const retrievePatientAppointments = () => {
-        PatientAppointmentDataService.getAll(patient_id)
+        PatientAppointmentDataService.getAll(id)
             .then(response => {
                 setPatientAppointments(response.data);
                 console.log(response.data);

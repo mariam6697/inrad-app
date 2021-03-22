@@ -12,7 +12,7 @@ const PatientAttachment = ({patient_id, attachments}) => {
         id: null,
         name: "",
         description: "",
-        link: ""
+        attachment: null
     };
     const [patientAttachment, setPatientAttachment] = useState([]);
     const [patientAttachments, setPatientAttachments] = useState(attachments);
@@ -47,13 +47,14 @@ const PatientAttachment = ({patient_id, attachments}) => {
     };
 
     const savePatientAttachment = () => {
+        console.log(patientAttachment);
         PatientAttachmentDataService.create(patient_id, patientAttachment)
             .then(response => {
                 setPatientAttachment({
                     id: response.data.id,
                     name: response.data.name,
                     description: response.data.description,
-                    link: response.data.link,
+                    attachment: response.data.attachment,
                 });
                 setFormVisibility(false);
                 retrievePatientAttachments();
@@ -79,7 +80,7 @@ const PatientAttachment = ({patient_id, attachments}) => {
             id: data.id,
             name: data.name,
             description: data.description,
-            link: data.link,
+            attachment: data.attachment,
         });
     }
 
@@ -89,7 +90,7 @@ const PatientAttachment = ({patient_id, attachments}) => {
             id: patientAttachment.id,
             name: patientAttachment.name,
             description: patientAttachment.description,
-            link: patientAttachment.link,
+            attachment: patientAttachment.attachment,
         }
         PatientAttachmentDataService.update(patient_id, data.id, data)
             .then(response => {

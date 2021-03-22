@@ -24,8 +24,9 @@ const PatientList = ({
                          deletePatient
                      }) => {
 
-    const history = useHistory();
-    const handleOnClickDetail = useCallback((id) => history.push(`/patients/${id}`), [history]);
+    const handleOnClickDetail = (id) => {
+        window.location.href = `/patients/${id}`
+    }
     return (
         <div style={marginTop}>
             <Grid fluid>

@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, ControlLabel, Form, FormControl, FormGroup, Modal} from "rsuite";
+import {Button, ControlLabel, Form, FormControl, FormGroup, Input, Modal} from "rsuite";
 
 const AppointmentForm = ({appointment, hideModal, visibility, setAppointment, saveAppointment, updateAppointmentButton}) => {
 
@@ -19,7 +19,7 @@ const AppointmentForm = ({appointment, hideModal, visibility, setAppointment, sa
                     >
                         <FormGroup>
                             <ControlLabel>Resumen</ControlLabel>
-                            <FormControl name="summary"/>
+                            <Input componentClass="textarea" rows={10} name="summary"/>
                         </FormGroup>
                     </Form>
                 </Modal.Body>

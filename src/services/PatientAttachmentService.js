@@ -9,7 +9,11 @@ async function get(patient_id, id) {
 }
 
 const create = (patient_id, data) => {
-    return http.post(`patients/${patient_id}/attachments/`, data);
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("description", data.description);
+    formData.append("attachment", data.attachment);
+    return http.post(`patients/${patient_id}/attachments/`, formData);
 };
 
 const update = (patient_id, id, data) => {
