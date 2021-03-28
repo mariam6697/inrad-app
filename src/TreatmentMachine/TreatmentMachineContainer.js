@@ -17,6 +17,7 @@ const TreatmentMachine = () => {
   const [currentTreatmentMachine, setCurrentTreatmentMachine] = useState(null);
   const [visibility, setVisibility] = useState(false);
   const [formVisibility, setFormVisibility] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     retrieveTreatmentMachines();
@@ -31,6 +32,7 @@ const TreatmentMachine = () => {
     TreatmentMachineDataService.getAll()
       .then((response) => {
         setTreatmentMachines(response.data);
+        setLoading(false);
         console.log(response.data);
       })
       .catch((e) => {
@@ -129,6 +131,7 @@ const TreatmentMachine = () => {
         setFormInstance={setFormTreatmentMachine}
         showFormModal={() => setFormVisibility(true)}
         deleteInstance={deleteTreatmentMachine}
+        loading={loading}
       />
       <div className="modal-container">
         <GenericForm

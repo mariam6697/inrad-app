@@ -17,6 +17,7 @@ const SymptomGroup = () => {
   const [currentSymptomGroup, setCurrentSymptomGroup] = useState(null);
   const [visibility, setVisibility] = useState(false);
   const [formVisibility, setFormVisibility] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     retrieveSymptomGroups();
@@ -31,6 +32,7 @@ const SymptomGroup = () => {
     SymptomGroupDataService.getAll()
       .then((response) => {
         setSymptomGroups(response.data);
+        setLoading(false);
         console.log(response.data);
       })
       .catch((e) => {
@@ -129,6 +131,7 @@ const SymptomGroup = () => {
         setFormInstance={setFormSymptomGroup}
         showFormModal={() => setFormVisibility(true)}
         deleteInstance={deleteSymptomGroup}
+        loading={loading}
       />
       <div className="modal-container">
         <GenericForm

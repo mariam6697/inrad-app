@@ -17,6 +17,7 @@ const TreatmentMode = () => {
   const [currentTreatmentMode, setCurrentTreatmentMode] = useState(null);
   const [visibility, setVisibility] = useState(false);
   const [formVisibility, setFormVisibility] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     retrieveTreatmentModes();
@@ -31,6 +32,7 @@ const TreatmentMode = () => {
     TreatmentModeDataService.getAll()
       .then((response) => {
         setTreatmentModes(response.data);
+        setLoading(false);
         console.log(response.data);
       })
       .catch((e) => {
@@ -129,6 +131,7 @@ const TreatmentMode = () => {
         setFormInstance={setFormTreatmentMode}
         showFormModal={() => setFormVisibility(true)}
         deleteInstance={deleteTreatmentMode}
+        loading={loading}
       />
       <div className="modal-container">
         <GenericForm

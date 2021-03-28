@@ -21,6 +21,7 @@ const PatientAttachment = ({ patient_id, attachments }) => {
   );
   const [visibility, setVisibility] = useState(false);
   const [formVisibility, setFormVisibility] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const onChangeSearchName = (value, e) => {
     const searchName = value;
@@ -31,6 +32,7 @@ const PatientAttachment = ({ patient_id, attachments }) => {
     PatientAttachmentDataService.getAll(patient_id)
       .then((response) => {
         setPatientAttachments(response.data);
+        setLoading(true);
         console.log(response.data);
       })
       .catch((e) => {
@@ -136,6 +138,7 @@ const PatientAttachment = ({ patient_id, attachments }) => {
         setFormInstance={setFormPatientAttachment}
         showFormModal={() => setFormVisibility(true)}
         deleteInstance={deletePatientAttachment}
+        loading={loading}
       />
       <div className="modal-container">
         <GenericForm

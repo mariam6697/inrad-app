@@ -19,6 +19,7 @@ const TreatmentCategory = () => {
   );
   const [visibility, setVisibility] = useState(false);
   const [formVisibility, setFormVisibility] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     retrieveTreatmentCategories();
@@ -33,6 +34,7 @@ const TreatmentCategory = () => {
     TreatmentCategoryDataService.getAll()
       .then((response) => {
         setTreatmentCategories(response.data);
+        setLoading(false);
         console.log(response.data);
       })
       .catch((e) => {
@@ -131,6 +133,7 @@ const TreatmentCategory = () => {
         setFormInstance={setFormTreatmentCategory}
         showFormModal={() => setFormVisibility(true)}
         deleteInstance={deleteTreatmentCategory}
+        loading={loading}
       />
       <div className="modal-container">
         <GenericForm

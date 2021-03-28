@@ -17,6 +17,7 @@ const Role = () => {
   const [currentRole, setCurrentRole] = useState(null);
   const [visibility, setVisibility] = useState(false);
   const [formVisibility, setFormVisibility] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     retrieveRoles();
@@ -31,6 +32,7 @@ const Role = () => {
     RoleDataService.getAll()
       .then((response) => {
         setRoles(response.data);
+        setLoading(false);
         console.log(response.data);
       })
       .catch((e) => {
@@ -129,6 +131,7 @@ const Role = () => {
         setFormInstance={setFormRole}
         showFormModal={() => setFormVisibility(true)}
         deleteInstance={deleteRole}
+        loading={loading}
       />
       <div className="modal-container">
         <GenericForm

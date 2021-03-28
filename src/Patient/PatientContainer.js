@@ -26,6 +26,7 @@ const Patient = () => {
   const [currentPatient, setCurrentPatient] = useState(null);
   const [visibility, setVisibility] = useState(false);
   const [formVisibility, setFormVisibility] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     retrievePatients();
@@ -40,6 +41,7 @@ const Patient = () => {
     PatientDataService.getAll()
       .then((response) => {
         setPatients(response.data);
+        setLoading(false);
         console.log(response.data);
       })
       .catch((e) => {
@@ -160,6 +162,7 @@ const Patient = () => {
         setFormPatient={setFormPatient}
         showFormModal={() => setFormVisibility(true)}
         deletePatient={deletePatient}
+        loading={loading}
       />
       <div className="modal-container">
         <PatientForm

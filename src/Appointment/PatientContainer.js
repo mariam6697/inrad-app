@@ -5,6 +5,7 @@ import PatientList from "./PatientList";
 const AppointmentPatient = () => {
   const [patients, setPatients] = useState([]);
   const [searchName, setSearchName] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     retrievePatients();
@@ -19,6 +20,7 @@ const AppointmentPatient = () => {
     PatientDataService.getAll()
       .then((response) => {
         setPatients(response.data);
+        setLoading(false);
         console.log(response.data);
       })
       .catch((e) => {
@@ -44,6 +46,7 @@ const AppointmentPatient = () => {
         searchName={searchName}
         onChangeSearchName={onChangeSearchName}
         findByName={findByName}
+        loading={loading}
       />
     </>
   );

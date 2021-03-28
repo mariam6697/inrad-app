@@ -22,6 +22,7 @@ const PatientList = ({
   setFormPatient,
   showFormModal,
   deletePatient,
+  loading,
 }) => {
   const handleOnClickDetail = (id) => {
     window.location.href = `/patients/${id}`;
@@ -42,7 +43,7 @@ const PatientList = ({
             <Button onClick={findByName}>Buscar</Button>
           </Col>
           <Col xs={24}>
-            <Table height={400} data={patients}>
+            <Table loading={loading} height={400} data={patients}>
               <Column width={200} fixed>
                 <HeaderCell>Nombre</HeaderCell>
                 <Cell dataKey="name" />
