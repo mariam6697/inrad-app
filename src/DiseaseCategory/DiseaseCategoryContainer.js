@@ -18,6 +18,7 @@ const DiseaseCategory = () => {
   const [currentDiseaseCategory, setCurrentDiseaseCategory] = useState(null);
   const [visibility, setVisibility] = useState(false);
   const [formVisibility, setFormVisibility] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     retrieveDiseaseCategories();
@@ -32,6 +33,7 @@ const DiseaseCategory = () => {
     DiseaseCategoryDataService.getAll()
       .then((response) => {
         setDiseaseCategories(response.data);
+        setLoading(false);
         console.log(response.data);
       })
       .catch((e) => {
@@ -133,6 +135,7 @@ const DiseaseCategory = () => {
         setFormInstance={setFormDiseaseCategory}
         showFormModal={() => setFormVisibility(true)}
         deleteInstance={deleteDiseaseCategory}
+        loading={loading}
       />
       <div className="modal-container">
         <GenericForm

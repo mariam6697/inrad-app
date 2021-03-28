@@ -19,6 +19,7 @@ const DiseaseType = () => {
   const [currentDiseaseType, setCurrentDiseaseType] = useState(null);
   const [visibility, setVisibility] = useState(false);
   const [formVisibility, setFormVisibility] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     retrieveDiseaseTypes();
@@ -33,6 +34,7 @@ const DiseaseType = () => {
     DiseaseTypeDataService.getAll()
       .then((response) => {
         setDiseaseTypes(response.data);
+        setLoading(false);
         console.log(response.data);
       })
       .catch((e) => {
@@ -137,6 +139,7 @@ const DiseaseType = () => {
         setFormInstance={setFormDiseaseType}
         showFormModal={() => setFormVisibility(true)}
         deleteInstance={deleteDiseaseType}
+        loading={loading}
       />
       <div className="modal-container">
         <GenericForm
