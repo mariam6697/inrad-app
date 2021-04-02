@@ -33,6 +33,7 @@ instance.interceptors.response.use(
       error.response.status === 401 &&
       originalRequest.url === baseURL + "api/token/refresh/"
     ) {
+      localStorage.clear();
       window.location.href = "/login/";
       return Promise.reject(error);
     }
@@ -68,10 +69,12 @@ instance.interceptors.response.use(
               console.log(err);
             });
         } else {
+          localStorage.clear();
           console.log("Refresh token is expired", tokenParts.exp, now);
           window.location.href = "/login/";
         }
       } else {
+        localStorage.clear();
         console.log("Refresh token not available.");
         window.location.href = "/login/";
       }
