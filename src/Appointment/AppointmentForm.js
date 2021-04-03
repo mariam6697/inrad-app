@@ -48,7 +48,6 @@ const AppointmentForm = ({
               appointment={appointment}
               setAppointment={setAppointment}
             />
-            <div>{JSON.stringify(appointment, null, 2)}</div>
           </Form>
         </Modal.Body>
         <Modal.Footer>

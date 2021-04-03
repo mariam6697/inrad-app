@@ -1,6 +1,7 @@
 import PatientDataService from "../services/PatientService";
 import PatientAppointmentDataService from "../services/PatientAppointmentService";
 import PatientAppointmentImageService from "../services/PatientAppointmentImageService";
+import PatientAppointmentSymptomService from "../services/PatientAppointmentSymptomService";
 import { Alert } from "rsuite";
 import { useEffect, useState } from "react";
 import PatientDetailShow from "../Appointment/PatientDetailShow";
@@ -43,6 +44,7 @@ const PatientAppointment = ({ patient_id }) => {
     PatientAppointmentDataService.create(patient.id, patientAppointment)
       .then((response) => {
         savePatientAppointmentImages(response.data.id);
+        savePatientAppointmentSymptoms(response.data.id);
         setPatientAppointment({
           id: response.data.id,
           summary: patientAppointment.summary,
@@ -63,6 +65,14 @@ const PatientAppointment = ({ patient_id }) => {
       patient.id,
       appointment_id,
       patientAppointment.images
+    );
+  };
+
+  const savePatientAppointmentSymptoms = (appointment_id) => {
+    PatientAppointmentSymptomService.create(
+      patient.id,
+      appointment_id,
+      patientAppointment.symptoms
     );
   };
 

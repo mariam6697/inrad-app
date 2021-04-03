@@ -68,7 +68,7 @@ const AppointmentImageForm = ({ appointment, setAppointment }) => {
               />
             </FormGroup>
             <FormGroup>
-              <ControlLabel>Description</ControlLabel>
+              <ControlLabel>Descripción</ControlLabel>
               <FormControl
                 name="description"
                 onChange={(event) => onChangeDescription(index, event)}

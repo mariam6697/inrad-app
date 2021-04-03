@@ -37,6 +37,16 @@ const AppointmentList = ({
                 />
               ))}
               <br />
+              {appointment.symptoms.length > 0 && (
+                <>
+                  <p>Síntomas:</p>
+                  <br />
+                </>
+              )}
+              {appointment.symptoms.map((symptom) => (
+                <p>{symptom.symptom}</p>
+              ))}
+              <br />
             </>
           ))}
         </Row>

@@ -66,13 +66,13 @@ const SymptomForm = ({ appointment, setAppointment }) => {
 
   const onChangeSymptom = (index, event) => {
     const values = [...symptomInputs];
-    values[index].SymptomId = event;
+    values[index].symptom = event;
     setSymptomInputs(values);
   };
 
   const handleAddFields = () => {
     const values = [...symptomInputs];
-    values.push({ id: "", SymptomId: "" });
+    values.push({ id: "", symptom: "" });
     setSymptomInputs(values);
   };
 
