@@ -4,6 +4,10 @@ const getAll = () => {
   return http.get("/symptoms/");
 };
 
+const getAllByGroupId = (id) => {
+  return http.get(`/symptom_groups/${id}/symptoms/`);
+};
+
 const get = (id) => {
   return http.get(`/symptoms/${id}`);
 };
@@ -31,4 +35,5 @@ export default {
   update,
   remove,
   findByName,
+  getAllByGroupId,
 };

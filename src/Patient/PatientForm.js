@@ -18,19 +18,6 @@ const PatientForm = ({
   savePatient,
   updatePatientButton,
 }) => {
-  const blood_types = [
-    { label: "O+", value: "O+" },
-    {
-      label: "O-",
-      value: "O-",
-    },
-    { label: "A+", value: "A+" },
-    { label: "A-", value: "A-" },
-    { label: "B+", value: "B+" },
-    { label: "B-", value: "B-" },
-    { label: "AB+", value: "AB+" },
-    { label: "AB-", value: "AB-" },
-  ];
   return (
     <>
       <Modal show={visibility} onHide={hideModal}>
@@ -81,15 +68,6 @@ const PatientForm = ({
             <FormGroup>
               <ControlLabel>Edad</ControlLabel>
               <FormControl name="age" />
-            </FormGroup>
-            <FormGroup>
-              <ControlLabel>Tipo de sangre</ControlLabel>
-              <FormControl
-                name="blood_type"
-                accepter={SelectPicker}
-                style={{ display: "inline-block", width: 200 }}
-                data={blood_types}
-              />
             </FormGroup>
           </Form>
         </Modal.Body>

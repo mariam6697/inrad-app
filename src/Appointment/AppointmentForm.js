@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   ControlLabel,
@@ -7,7 +7,10 @@ import {
   FormGroup,
   Input,
   Modal,
+  SelectPicker,
 } from "rsuite";
+import SymptomForm from "./SymptomForm";
+import AppointmentImageForm from "./AppointmentImageForm";
 
 const AppointmentForm = ({
   appointment,
@@ -35,8 +38,17 @@ const AppointmentForm = ({
           >
             <FormGroup>
               <ControlLabel>Resumen</ControlLabel>
-              <Input componentClass="textarea" rows={10} name="summary" />
+              <FormControl name="summary" />
             </FormGroup>
+            <SymptomForm
+              appointment={appointment}
+              setAppointment={setAppointment}
+            />
+            <AppointmentImageForm
+              appointment={appointment}
+              setAppointment={setAppointment}
+            />
+            <div>{JSON.stringify(appointment, null, 2)}</div>
           </Form>
         </Modal.Body>
         <Modal.Footer>

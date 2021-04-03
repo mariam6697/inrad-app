@@ -13,7 +13,6 @@ const Patient = () => {
     phone_number: "",
     gender: "",
     age: null,
-    blood_type: "",
     attachments: [],
     treatments: [],
     diagnostics: [],
@@ -71,7 +70,6 @@ const Patient = () => {
           phone_number: response.data.phone_number,
           gender: response.data.gender,
           age: response.data.age,
-          blood_type: response.data.blood_type,
           attachments: response.data.attachments,
           treatments: response.data.treatments,
           diagnostics: response.data.diagnostics,
@@ -105,7 +103,6 @@ const Patient = () => {
       phone_number: data.phone_number,
       gender: data.gender,
       age: data.age,
-      blood_type: data.blood_type,
       attachments: data.attachments,
       treatments: data.treatments,
       diagnostics: data.diagnostics,
@@ -123,7 +120,6 @@ const Patient = () => {
       phone_number: patient.phone_number,
       gender: patient.gender,
       age: patient.age,
-      blood_type: patient.blood_type,
     };
     PatientDataService.update(data.id, data)
       .then((response) => {

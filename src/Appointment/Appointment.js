@@ -1,5 +1,6 @@
 import PatientDataService from "../services/PatientService";
 import PatientAppointmentDataService from "../services/PatientAppointmentService";
+import PatientAppointmentImageService from "../services/PatientAppointmentImageService";
 import { Alert } from "rsuite";
 import { useEffect, useState } from "react";
 import PatientDetailShow from "../Appointment/PatientDetailShow";
@@ -15,7 +16,8 @@ const PatientAppointment = ({ patient_id }) => {
     user: null,
     patientTreatment: null,
     patientDiagnostic: null,
-    attachments: [],
+    images: [],
+    symptoms: [],
   };
   const [patientAppointments, setPatientAppointments] = useState([]);
   const [patientAppointment, setPatientAppointment] = useState(
@@ -40,10 +42,12 @@ const PatientAppointment = ({ patient_id }) => {
   const savePatientAppointment = () => {
     PatientAppointmentDataService.create(patient.id, patientAppointment)
       .then((response) => {
+        savePatientAppointmentImages(response.data.id);
         setPatientAppointment({
           id: response.data.id,
-          summary: response.data.summary,
-          attachments: response.data.attachments,
+          summary: patientAppointment.summary,
+          images: patientAppointment.images,
+          symptoms: patientAppointment.symptoms,
         });
         setFormVisibility(false);
         retrievePatientAppointments();
@@ -52,6 +56,14 @@ const PatientAppointment = ({ patient_id }) => {
       .catch((e) => {
         console.log(e);
       });
+  };
+
+  const savePatientAppointmentImages = (appointment_id) => {
+    PatientAppointmentImageService.create(
+      patient.id,
+      appointment_id,
+      patientAppointment.images
+    );
   };
 
   const newPatientAppointment = () => {
@@ -72,15 +84,17 @@ const PatientAppointment = ({ patient_id }) => {
     setPatientAppointment({
       id: data.id,
       summary: data.summary,
-      attachments: data.attachments,
+      images: data.images,
+      symptoms: data.symptoms,
     });
   };
 
   const updatePatientAppointmentButton = () => {
     let data = {
-      id: PatientAppointment.id,
-      summary: PatientAppointment.summary,
-      attachments: PatientAppointment.attachments,
+      id: patientAppointment.id,
+      summary: patientAppointment.summary,
+      images: patientAppointment.images,
+      symptoms: patientAppointment.symptoms,
     };
     PatientAppointmentDataService.update(patient_id, data.id, data)
       .then((response) => {
@@ -124,8 +138,7 @@ const PatientAppointment = ({ patient_id }) => {
       phone_number: data.phone_number,
       gender: data.gender,
       age: data.age,
-      blood_type: data.blood_type,
-      attachments: data.attachments,
+      images: data.images,
       treatments: data.treatments,
       current_treatment: data.current_treatment,
       current_diagnostic: data.current_diagnostic,

@@ -21,7 +21,6 @@ const PatientDetail = () => {
       phone_number: data.phone_number,
       gender: data.gender,
       age: data.age,
-      blood_type: data.blood_type,
       attachments: data.attachments,
       treatments: data.treatments,
       current_treatment: data.current_treatment,

@@ -21,7 +21,7 @@ const PatientAttachment = ({ patient_id, attachments }) => {
   );
   const [visibility, setVisibility] = useState(false);
   const [formVisibility, setFormVisibility] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const onChangeSearchName = (value, e) => {
     const searchName = value;
@@ -32,7 +32,7 @@ const PatientAttachment = ({ patient_id, attachments }) => {
     PatientAttachmentDataService.getAll(patient_id)
       .then((response) => {
         setPatientAttachments(response.data);
-        setLoading(true);
+        setLoading(false);
         console.log(response.data);
       })
       .catch((e) => {
