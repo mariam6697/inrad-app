@@ -12,7 +12,7 @@ const DiseaseTypeSelectField = () => {
       .then((response) => {
         var diseaseTypes = response.data;
         var diseaseTypes_for_select = diseaseTypes.map(function (x) {
-          return { label: x.name, value: x.id };
+          return { label: `${x.code} ${x.name}`, value: x.id };
         });
         setDiseaseTypes(diseaseTypes_for_select);
         console.log(diseaseTypes_for_select);
