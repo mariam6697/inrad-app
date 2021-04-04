@@ -27,7 +27,9 @@ const AppointmentList = ({
         <Row className="show-grid" style={marginTop}>
           {appointments.map((appointment) => (
             <>
-              <label>{appointment.summary}</label>
+              <label>Fecha: {appointment.date}</label>
+              <br />
+              <label>Resumen: {appointment.summary}</label>
               <br />
               {appointment.images.map((image) => (
                 <img

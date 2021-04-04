@@ -21,6 +21,7 @@ import TreatmentMachine from "./TreatmentMachine/TreatmentMachineContainer";
 import TreatmentMode from "./TreatmentMode/TreatmentModeContainer";
 import Appointment from "./Appointment/Appointment";
 import DiseaseCategory from "./DiseaseCategory/DiseaseCategoryContainer";
+import HealthFacility from "./HealthFacility/HealthFacilityContainer";
 
 const header = {
   maxHeight: 1,
@@ -64,6 +65,11 @@ function App() {
             </Sidebar>
             <Content>
               <Switch>
+                <Route
+                  exact
+                  path={["/health_facilities"]}
+                  component={HealthFacility}
+                />
                 <Route
                   exact
                   path={["/appointments"]}

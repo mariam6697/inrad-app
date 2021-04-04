@@ -12,6 +12,7 @@ import AppointmentForm from "../Appointment/AppointmentForm";
 const PatientAppointment = ({ patient_id }) => {
   const initialPatientAppointmentState = {
     id: null,
+    date: null,
     summary: "",
     patient: null,
     user: null,
@@ -47,6 +48,7 @@ const PatientAppointment = ({ patient_id }) => {
         savePatientAppointmentSymptoms(response.data.id);
         setPatientAppointment({
           id: response.data.id,
+          date: patientAppointment.date,
           summary: patientAppointment.summary,
           images: patientAppointment.images,
           symptoms: patientAppointment.symptoms,
@@ -93,6 +95,7 @@ const PatientAppointment = ({ patient_id }) => {
   const setFormPatientAppointment = (data) => {
     setPatientAppointment({
       id: data.id,
+      date: data.date,
       summary: data.summary,
       images: data.images,
       symptoms: data.symptoms,
@@ -102,6 +105,7 @@ const PatientAppointment = ({ patient_id }) => {
   const updatePatientAppointmentButton = () => {
     let data = {
       id: patientAppointment.id,
+      date: patientAppointment.date,
       summary: patientAppointment.summary,
       images: patientAppointment.images,
       symptoms: patientAppointment.symptoms,

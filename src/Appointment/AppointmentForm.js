@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
   Button,
   ControlLabel,
+  DatePicker,
   Form,
   FormControl,
   FormGroup,
@@ -20,6 +21,10 @@ const AppointmentForm = ({
   saveAppointment,
   updateAppointmentButton,
 }) => {
+  const onChangeCalendar = (value) => {
+    appointment.date = value;
+    appointment.date = appointment.date.toISOString().slice(0, 10);
+  };
   return (
     <>
       <Modal show={visibility} onHide={hideModal}>
@@ -37,6 +42,12 @@ const AppointmentForm = ({
             onChange={(appointment) => setAppointment(appointment)}
           >
             <FormGroup>
+              <ControlLabel>Fecha</ControlLabel>
+              <DatePicker
+                onChange={onChangeCalendar}
+                placeholder="Seleccione Fecha"
+                format="DD-MM-YYYY"
+              />
               <ControlLabel>Resumen</ControlLabel>
               <FormControl name="summary" />
             </FormGroup>
