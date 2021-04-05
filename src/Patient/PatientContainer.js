@@ -3,6 +3,7 @@ import PatientDataService from "../services/PatientService";
 import PatientList from "./PatientList";
 import PatientForm from "./PatientForm";
 import { Alert } from "rsuite";
+import HealthFacilityDataService from "../services/HealthFacilityService";
 
 const Patient = () => {
   const initialPatientState = {
@@ -21,6 +22,7 @@ const Patient = () => {
   };
   const [patient, setPatient] = useState([]);
   const [patients, setPatients] = useState([]);
+  const [healthFacilities, setHealthFacilities] = useState([]);
   const [searchName, setSearchName] = useState("");
   const [currentPatient, setCurrentPatient] = useState(null);
   const [visibility, setVisibility] = useState(false);
@@ -29,7 +31,22 @@ const Patient = () => {
 
   useEffect(() => {
     retrievePatients();
+    retrieveHealthFacilities();
   }, []);
+
+  const retrieveHealthFacilities = () => {
+    HealthFacilityDataService.getAll()
+      .then((response) => {
+        const healthFacilities = response.data;
+        const healthFacilitiesForSelect = healthFacilities.map(function (x) {
+          return { label: x.name, value: x.id };
+        });
+        setHealthFacilities(healthFacilitiesForSelect);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
 
   const onChangeSearchName = (e) => {
     const searchName = e.target.value;
@@ -169,6 +186,7 @@ const Patient = () => {
           setPatient={setPatient}
           savePatient={savePatient}
           updatePatientButton={updatePatientButton}
+          healthFacilities={healthFacilities}
         />
       </div>
     </>

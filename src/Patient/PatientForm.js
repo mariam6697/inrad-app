@@ -17,6 +17,7 @@ const PatientForm = ({
   setPatient,
   savePatient,
   updatePatientButton,
+  healthFacilities,
 }) => {
   return (
     <>
@@ -37,20 +38,12 @@ const PatientForm = ({
             <FormGroup>
               <ControlLabel>Nombre</ControlLabel>
               <FormControl name="name" />
-            </FormGroup>
-            <FormGroup>
               <ControlLabel>Apellido</ControlLabel>
               <FormControl name="last_name" />
-            </FormGroup>
-            <FormGroup>
               <ControlLabel>RUT</ControlLabel>
               <FormControl name="identifier" />
-            </FormGroup>
-            <FormGroup>
               <ControlLabel>Número de teléfono</ControlLabel>
               <FormControl name="phone_number" />
-            </FormGroup>
-            <FormGroup>
               <ControlLabel>Sexo</ControlLabel>
               <FormControl
                 name="gender"
@@ -64,10 +57,15 @@ const PatientForm = ({
                   },
                 ]}
               />
-            </FormGroup>
-            <FormGroup>
               <ControlLabel>Edad</ControlLabel>
               <FormControl name="age" />
+              <ControlLabel>Derivado desde </ControlLabel>
+              <FormControl
+                name="group"
+                accepter={SelectPicker}
+                style={{ display: "inline-block", width: 200 }}
+                data={healthFacilities}
+              />
             </FormGroup>
           </Form>
         </Modal.Body>

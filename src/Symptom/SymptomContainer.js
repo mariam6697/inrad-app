@@ -116,12 +116,12 @@ const Symptom = () => {
   const retrieveSymptomGroups = () => {
     SymptomGroupDataService.getAll()
       .then((response) => {
-        var symptomGroups = response.data;
-        var symptomGroups_for_select = symptomGroups.map(function (x) {
+        const symptomGroups = response.data;
+        const symptomGroupsForSelect = symptomGroups.map(function (x) {
           return { label: x.name, value: x.id };
         });
-        setSymptomGroups(symptomGroups_for_select);
-        console.log(symptomGroups_for_select);
+        setSymptomGroups(symptomGroupsForSelect);
+        console.log(symptomGroupsForSelect);
       })
       .catch((e) => {
         console.log(e);
