@@ -38,9 +38,9 @@ const PatientDetailShow = ({ patient }) => {
       </div>
       <div>
         <label>
-          <strong>Edad:</strong>
+          <strong>Fecha de nacimiento:</strong>
         </label>{" "}
-        {patient.age}
+        {patient.birth_date}
       </div>
       <PatientTreatmentContainer
         patient_id={patient.id}

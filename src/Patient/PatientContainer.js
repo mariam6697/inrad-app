@@ -4,6 +4,7 @@ import PatientList from "./PatientList";
 import PatientForm from "./PatientForm";
 import { Alert } from "rsuite";
 import HealthFacilityDataService from "../services/HealthFacilityService";
+import MedicalForecastDataService from "../services/MedicalForecastService";
 
 const Patient = () => {
   const initialPatientState = {
@@ -13,7 +14,8 @@ const Patient = () => {
     identifier: "",
     phone_number: "",
     gender: "",
-    age: null,
+    birth_date: null,
+    health_facility: null,
     attachments: [],
     treatments: [],
     diagnostics: [],
@@ -23,6 +25,7 @@ const Patient = () => {
   const [patient, setPatient] = useState([]);
   const [patients, setPatients] = useState([]);
   const [healthFacilities, setHealthFacilities] = useState([]);
+  const [medicalForecasts, setMedicalForecasts] = useState([]);
   const [searchName, setSearchName] = useState("");
   const [currentPatient, setCurrentPatient] = useState(null);
   const [visibility, setVisibility] = useState(false);
@@ -32,6 +35,7 @@ const Patient = () => {
   useEffect(() => {
     retrievePatients();
     retrieveHealthFacilities();
+    retrieveMedicalForecasts();
   }, []);
 
   const retrieveHealthFacilities = () => {
@@ -42,6 +46,20 @@ const Patient = () => {
           return { label: x.name, value: x.id };
         });
         setHealthFacilities(healthFacilitiesForSelect);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  const retrieveMedicalForecasts = () => {
+    MedicalForecastDataService.getAll()
+      .then((response) => {
+        const medicalForecasts = response.data;
+        const medicalForecastsForSelect = medicalForecasts.map(function (x) {
+          return { label: x.name, value: x.id };
+        });
+        setMedicalForecasts(medicalForecastsForSelect);
       })
       .catch((e) => {
         console.log(e);
@@ -86,7 +104,8 @@ const Patient = () => {
           identifier: response.data.identifier,
           phone_number: response.data.phone_number,
           gender: response.data.gender,
-          age: response.data.age,
+          birth_date: response.data.birth_date,
+          health_facility: response.data.health_facility,
           attachments: response.data.attachments,
           treatments: response.data.treatments,
           diagnostics: response.data.diagnostics,
@@ -119,7 +138,8 @@ const Patient = () => {
       identifier: data.identifier,
       phone_number: data.phone_number,
       gender: data.gender,
-      age: data.age,
+      birth_date: data.birth_date,
+      health_facility: data.health_facility,
       attachments: data.attachments,
       treatments: data.treatments,
       diagnostics: data.diagnostics,
@@ -136,7 +156,8 @@ const Patient = () => {
       identifier: patient.identifier,
       phone_number: patient.phone_number,
       gender: patient.gender,
-      age: patient.age,
+      birth_date: patient.birth_date,
+      health_facility: patient.health_facility,
     };
     PatientDataService.update(data.id, data)
       .then((response) => {
@@ -187,6 +208,7 @@ const Patient = () => {
           savePatient={savePatient}
           updatePatientButton={updatePatientButton}
           healthFacilities={healthFacilities}
+          medicalForecasts={medicalForecasts}
         />
       </div>
     </>

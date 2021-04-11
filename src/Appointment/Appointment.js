@@ -151,7 +151,7 @@ const PatientAppointment = ({ patient_id }) => {
       identifier: data.identifier,
       phone_number: data.phone_number,
       gender: data.gender,
-      age: data.age,
+      birth_date: data.birth_date,
       images: data.images,
       treatments: data.treatments,
       current_treatment: data.current_treatment,

@@ -9,6 +9,7 @@ import {
   Input,
   Modal,
   SelectPicker,
+  HelpBlock
 } from "rsuite";
 import SymptomForm from "./SymptomForm";
 import AppointmentImageForm from "./AppointmentImageForm";
@@ -48,8 +49,10 @@ const AppointmentForm = ({
                 placeholder="Seleccione Fecha"
                 format="DD-MM-YYYY"
               />
+              <HelpBlock>Requerido</HelpBlock>
               <ControlLabel>Resumen</ControlLabel>
               <FormControl name="summary" />
+              <HelpBlock>Requerido</HelpBlock>
             </FormGroup>
             <SymptomForm
               appointment={appointment}

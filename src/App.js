@@ -22,6 +22,7 @@ import TreatmentMode from "./TreatmentMode/TreatmentModeContainer";
 import Appointment from "./Appointment/Appointment";
 import DiseaseCategory from "./DiseaseCategory/DiseaseCategoryContainer";
 import HealthFacility from "./HealthFacility/HealthFacilityContainer";
+import MedicalForecast from "./MedicalForecast/MedicalForecastContainer"
 
 const header = {
   maxHeight: 1,
@@ -69,6 +70,11 @@ function App() {
                   exact
                   path={["/health_facilities"]}
                   component={HealthFacility}
+                />
+                <Route
+                  exact
+                  path={["/medical_forecasts"]}
+                  component={MedicalForecast}
                 />
                 <Route
                   exact

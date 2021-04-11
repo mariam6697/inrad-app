@@ -8,6 +8,7 @@ import {
   HelpBlock,
   Form,
   SelectPicker,
+  DatePicker
 } from "rsuite";
 
 const PatientForm = ({
@@ -18,7 +19,13 @@ const PatientForm = ({
   savePatient,
   updatePatientButton,
   healthFacilities,
+  medicalForecasts,
 }) => {
+  const onChangeCalendar = (value, e) => {
+    patient.birth_date = value;
+    patient.birth_date = patient.birth_date.toISOString().slice(0, 10);
+  };
+
   return (
     <>
       <Modal show={visibility} onHide={hideModal}>
@@ -57,14 +64,25 @@ const PatientForm = ({
                   },
                 ]}
               />
-              <ControlLabel>Edad</ControlLabel>
-              <FormControl name="age" />
+              <ControlLabel>Fecha de nacimiento</ControlLabel>
+              <DatePicker
+                onChange={onChangeCalendar}
+                placeholder="Seleccione Fecha"
+                format="YYYY-MM-DD"
+              />
               <ControlLabel>Derivado desde </ControlLabel>
               <FormControl
-                name="group"
+                name="health_facility"
                 accepter={SelectPicker}
                 style={{ display: "inline-block", width: 200 }}
                 data={healthFacilities}
+              />
+              <ControlLabel>Previsión de salud </ControlLabel>
+              <FormControl
+                name="medical_forecast"
+                accepter={SelectPicker}
+                style={{ display: "inline-block", width: 200 }}
+                data={medicalForecasts}
               />
             </FormGroup>
           </Form>

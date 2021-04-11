@@ -46,7 +46,7 @@ const HealthFacility = () => {
       .then((response) => {
         setHealthFacilities(response.data);
       })
-      .catch((e) => {});
+      .catch((e) => { });
   };
 
   const saveHealthFacility = () => {
@@ -83,6 +83,7 @@ const HealthFacility = () => {
     let data = {
       id: healthFacility.id,
       name: healthFacility.name,
+      address: healthFacility.address,
     };
     HealthFacilityDataService.update(data.id, data)
       .then((response) => {
