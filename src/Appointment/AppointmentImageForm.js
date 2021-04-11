@@ -71,6 +71,8 @@ const AppointmentImageForm = ({ appointment, setAppointment }) => {
               <ControlLabel>Descripción</ControlLabel>
               <FormControl
                 name="description"
+                rows={5}
+                componentClass="textarea"
                 onChange={(event) => onChangeDescription(index, event)}
               />
             </FormGroup>

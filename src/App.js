@@ -22,7 +22,7 @@ import TreatmentMode from "./TreatmentMode/TreatmentModeContainer";
 import Appointment from "./Appointment/Appointment";
 import DiseaseCategory from "./DiseaseCategory/DiseaseCategoryContainer";
 import HealthFacility from "./HealthFacility/HealthFacilityContainer";
-import MedicalForecast from "./MedicalForecast/MedicalForecastContainer"
+import MedicalForecast from "./MedicalForecast/MedicalForecastContainer";
 
 const header = {
   maxHeight: 1,

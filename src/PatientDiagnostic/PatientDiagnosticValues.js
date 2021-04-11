@@ -48,7 +48,7 @@ const formValues = {
     {
       component: "text",
       label: "Descripción",
-      type: "text",
+      type: "textarea",
       name: "description",
       required: true,
     },

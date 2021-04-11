@@ -43,6 +43,18 @@ const PatientDetailShow = ({ patient }) => {
         </label>{" "}
         {patient.birth_date}
       </div>
+      <div>
+        <label>
+          <strong>Previsión de salud:</strong>
+        </label>{" "}
+        {patient.medical_forecast}
+      </div>
+      <div>
+        <label>
+          <strong>Derivado de:</strong>
+        </label>{" "}
+        {patient.health_facility ? patient.health_facility : "No aplica"}
+      </div>
       <PatientTreatmentContainer
         patient_id={patient.id}
         treatments={patient.treatments}

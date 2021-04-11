@@ -9,7 +9,7 @@ import {
   Input,
   Modal,
   SelectPicker,
-  HelpBlock
+  HelpBlock,
 } from "rsuite";
 import SymptomForm from "./SymptomForm";
 import AppointmentImageForm from "./AppointmentImageForm";
@@ -51,7 +51,7 @@ const AppointmentForm = ({
               />
               <HelpBlock>Requerido</HelpBlock>
               <ControlLabel>Resumen</ControlLabel>
-              <FormControl name="summary" />
+              <FormControl name="summary" rows={5} componentClass="textarea" />
               <HelpBlock>Requerido</HelpBlock>
             </FormGroup>
             <SymptomForm

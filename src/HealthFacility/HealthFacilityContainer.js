@@ -46,7 +46,7 @@ const HealthFacility = () => {
       .then((response) => {
         setHealthFacilities(response.data);
       })
-      .catch((e) => { });
+      .catch((e) => {});
   };
 
   const saveHealthFacility = () => {

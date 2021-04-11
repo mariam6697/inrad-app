@@ -156,6 +156,8 @@ const PatientAppointment = ({ patient_id }) => {
       treatments: data.treatments,
       current_treatment: data.current_treatment,
       current_diagnostic: data.current_diagnostic,
+      health_facility: data.health_facility,
+      medical_forecast: data.medical_forecast,
     });
   };
 

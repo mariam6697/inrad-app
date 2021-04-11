@@ -27,6 +27,8 @@ const GenericFormGroup = ({ label, name, required, type, instance }) => {
         return <input type="file" name="attachment" onChange={onChangeFile} />;
       case "toggle":
         return <Toggle onChange={onToggle} />;
+      case "textarea":
+        return <FormControl name={name} rows={5} componentClass="textarea" />;
       case "date":
         return (
           <DatePicker

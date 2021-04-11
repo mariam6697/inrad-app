@@ -8,7 +8,7 @@ import {
   HelpBlock,
   Form,
   SelectPicker,
-  DatePicker
+  DatePicker,
 } from "rsuite";
 
 const PatientForm = ({
